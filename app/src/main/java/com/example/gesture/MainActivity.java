@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onGesturePerformed(GestureOverlayView gestureOverlayView, final Gesture gesture) {
                 View saveDialog = getLayoutInflater().inflate(R.layout.dialog_save,null,false);
-                ImageView img_show = (ImageView) saveDialog.findViewById(R.id.img_show);
+                ImageView img_show = (ImageView) saveDialog.findViewById(R.id.gesture_img);
                 final EditText edit_name = (EditText) saveDialog.findViewById(R.id.edit_name);
                 Bitmap bitmap = gesture.toBitmap(128,128,10,0xffff0000);
                 img_show.setImageBitmap(bitmap);

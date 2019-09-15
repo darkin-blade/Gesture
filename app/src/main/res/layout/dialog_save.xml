@@ -20,7 +20,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/img_show"
+        android:id="@+id/gesture_img"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginTop="10dp"/>
