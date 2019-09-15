@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,8 +21,9 @@ import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editText;
-    private GestureOverlayView gesture;
+    public EditText editText;
+    public GestureOverlayView gestureOverlayView;
+    public Gesture gesture;
 
     public String gesturePath;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initData();
-        setGesture();
+        initGesture();
     }
 
     public void initData() {
@@ -42,35 +44,68 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{permission}, 1);// 获取`写`权限
         }
 
-        gesturePath = getExternalFilesDir("").toString() + "/gesture";
+        gesturePath = getExternalFilesDir("").toString() + "/gestureOverlayView";
     }
 
-    public void setGesture() {
+    public void initGesture() {
         //获取手势编辑组件后，设置相关参数
-        gesture = (GestureOverlayView) findViewById(R.id.gesture);
-        gesture.setGestureColor(Color.GREEN);
-        gesture.setGestureStrokeWidth(5);
-        gesture.addOnGesturePerformedListener(new GestureOverlayView.OnGesturePerformedListener() {
+        gestureOverlayView = findViewById(R.id.gesture);
+        gestureOverlayView.setGestureColor(Color.GREEN);
+        gestureOverlayView.setUncertainGestureColor(Color.rgb(0xef, 0xa0, 0x50));
+        gestureOverlayView.setGestureStrokeWidth(5);
+
+        gestureOverlayView.addOnGesturePerformedListener(new GestureOverlayView.OnGesturePerformedListener() {
             @Override
             public void onGesturePerformed(GestureOverlayView gestureOverlayView, final Gesture gesture) {
-                Log.i("fuck", "shit");
-                View saveDialog = getLayoutInflater().inflate(R.layout.dialog_save,null,false);
-                ImageView img_show = (ImageView) saveDialog.findViewById(R.id.gesture_img);
-                final EditText edit_name = (EditText) saveDialog.findViewById(R.id.edit_name);
-                Bitmap bitmap = gesture.toBitmap(128,128,10,0xffff0000);
-                img_show.setImageBitmap(bitmap);
-                new AlertDialog.Builder(MainActivity.this).setView(saveDialog)
-                        .setPositiveButton("保存",new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //获取文件对应的手势库
-                                GestureLibrary gestureLib = GestureLibraries.fromFile(gesturePath);// TODO 路径
-                                gestureLib.addGesture(edit_name.getText().toString(),gesture);
-                                gestureLib.save();
-                            }
-                        }).setNegativeButton("取消", null).show();
+                Log.i("fuck", "performed");
+
+                getGesture(gestureOverlayView, gesture);
             }
         });
+
+        gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
+            @Override
+            public void onGestureStarted(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                Log.i("fuck", "start");
+
+                gesture = null;
+            }
+
+            @Override
+            public void onGesture(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                Log.i("fuck", "gesture");
+            }
+
+            @Override
+            public void onGestureEnded(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                Log.i("fuck", "ended");
+
+//                gesture = gestureOverlayView.getGesture();
+            }
+
+            @Override
+            public void onGestureCancelled(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                Log.i("fuck", "canceled");
+            }
+        });
+    }
+
+    public void getGesture(GestureOverlayView gestureOverlayView, final Gesture gesture) {
+        View saveDialog = getLayoutInflater().inflate(R.layout.dialog_save,null,false);
+        ImageView img_show = saveDialog.findViewById(R.id.gesture_img);
+        final EditText edit_name = saveDialog.findViewById(R.id.edit_name);
+        Bitmap bitmap = gesture.toBitmap(128,128,10,0xffff0000);
+        img_show.setImageBitmap(bitmap);
+        new AlertDialog.Builder(MainActivity.this).setView(saveDialog)
+                .setPositiveButton("保存",new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //获取文件对应的手势库
+                        GestureLibrary gestureLib = GestureLibraries.fromFile(gesturePath);// TODO 路径
+                        gestureLib.addGesture(edit_name.getText().toString(),gesture);
+                        gestureLib.save();
+                    }
+                }).setNegativeButton("取消", null).show();
     }
 }
