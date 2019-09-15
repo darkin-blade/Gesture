@@ -23,16 +23,17 @@
             android:text="Add gesture">
         </Button>
         <Button
+            android:id="@+id/test_gesture"
             style="@style/item_2"
-            android:text="Add gesture">
+            android:text="Test gesture">
         </Button>
         <Button
             style="@style/item_3"
-            android:text="Add gesture">
+            android:text="TODO">
         </Button>
         <Button
             style="@style/item_4"
-            android:text="Add gesture">
+            android:text="TODO">
         </Button>
         <Button
             style="@style/item_exit"
