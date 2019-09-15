@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initData();
-        initGesture();
+        // initGesture();// TODO
     }
 
     public void initData() {

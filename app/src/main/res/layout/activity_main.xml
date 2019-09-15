@@ -2,11 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/grey">
 
     <TextView
         style="@style/bar_2"
-        android:text="Add gesture">
+        android:text="Gesture">
     </TextView>
 
 
@@ -14,40 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <android.gesture.GestureOverlayView
-            android:id="@+id/gesture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gestureStrokeType="multiple"
-            android:layout_marginBottom="@dimen/bottom_1"
-            android:background="@color/grey"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_1"
-            android:background="@color/grey"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <View
-                style="@style/line">
-            </View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:padding="6dp"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/cancel_button"
-                    style="@style/cancel_button"/>
-                <Button
-                    android:id="@+id/save_button"
-                    style="@style/save_button"/>
-            </LinearLayout>
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
