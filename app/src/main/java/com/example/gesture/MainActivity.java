@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
     AddGesture addGesture;// 添加新的手势
     TestGesture testGesture;// 测试手势库
+    OpenLibrary openLibrary;// 打开手势库
 
     static public String appPath;// app路径
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         // 初始化窗口
         addGesture = new AddGesture();
         testGesture = new TestGesture();
+        openLibrary = new OpenLibrary();
 
         // 检查权限
         String permission = "android.permission.WRITE_EXTERNAL_STORAGE";
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             @Override
             public void onClick(View view) {
                 testGesture.show(getSupportFragmentManager(), "test");
+            }
+        });
+
+        Button btnOpen = findViewById(R.id.open_library);
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLibrary.show(getSupportFragmentManager(), "open");
             }
         });
     }
