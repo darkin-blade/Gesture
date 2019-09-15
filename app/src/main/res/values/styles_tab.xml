@@ -37,6 +37,16 @@
         <item name="android:background">@color/color_2</item>
     </style>
 
+    <style name="title_white" parent="title_1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/grey</item>
+    </style>
+
+    <!-- 栏 -->
+    <style name="tab_white" parent="title_white">
+        <item name="android:textSize">@dimen/tab_size</item>
+    </style>
+
     <!-- 横线 -->
     <style name="line">
         <item name="android:background">@color/grey_light</item>
@@ -61,5 +71,6 @@
 
     <!-- 底栏 -->
     <dimen name="bottom_1">60dp</dimen>
+    <dimen name="bottom_2">120dp</dimen>
 
 </resources>
