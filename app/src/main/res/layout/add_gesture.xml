@@ -39,10 +39,16 @@
                 android:padding="6dp"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/exit_button"
+                    android:text="Back"
+                    style="@style/delete_button"/>
+                <Button
                     android:id="@+id/cancel_button"
+                    android:text="Cancel"
                     style="@style/cancel_button"/>
                 <Button
                     android:id="@+id/save_button"
+                    android:text="Save"
                     style="@style/save_button"/>
             </LinearLayout>
 

@@ -1,11 +1,6 @@
 package com.example.gesture;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.gesture.Gesture;
-import android.gesture.GestureLibraries;
-import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -17,15 +12,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class AddGesture extends DialogFragment {
     public Button btnSave;// 保存手势
-    public Button btnDelete;// 删除当前
+    public Button btnCancel;// 删除当前
+    public Button btnExit;// 返回到主页面
 
     public GestureOverlayView gestureOverlayView;
     public Gesture gesture;
@@ -58,12 +52,37 @@ public class AddGesture extends DialogFragment {
     }
 
     public void initButton() {
+        btnSave = view.findViewById(R.id.save_button);
+        btnCancel = view.findViewById(R.id.cancel_button);
+        btnExit = view.findViewById(R.id.exit_button);
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getGesture();// TODO
+                gestureOverlayView.clear(true);// 清空
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gestureOverlayView.clear(true);// 清空
+            }
+        });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gestureOverlayView.clear(true);// 清空
+                dismiss();
+            }
+        });
     }
 
 
-    public void getGesture(GestureOverlayView gestureOverlayView, final Gesture gesture) {// TODO
-        Bitmap bitmap = gesture.toBitmap(128,128,10,0x000000);
+    public void getGesture() {// TODO
+//        Bitmap bitmap = gesture.toBitmap(128,128,10,0x000000);
 //        img.setImageBitmap(bitmap);
                         //获取文件对应的手势库
 //                        GestureLibrary gestureLib = GestureLibraries.fromFile(gesturePath);// TODO 路径
