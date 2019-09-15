@@ -54,15 +54,6 @@ public class MainActivity extends AppCompatActivity {
         gestureOverlayView.setUncertainGestureColor(Color.rgb(0xef, 0xa0, 0x50));
         gestureOverlayView.setGestureStrokeWidth(5);
 
-        gestureOverlayView.addOnGesturePerformedListener(new GestureOverlayView.OnGesturePerformedListener() {
-            @Override
-            public void onGesturePerformed(GestureOverlayView gestureOverlayView, final Gesture gesture) {
-                Log.i("fuck", "performed");
-
-                getGesture(gestureOverlayView, gesture);
-            }
-        });
-
         gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
             @Override
             public void onGestureStarted(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {

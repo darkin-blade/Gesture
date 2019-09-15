@@ -7,6 +7,7 @@
     <color name="color_5">#efa050</color>
     <color name="black">#000000</color>
     <color name="grey">#fafafa</color>
+    <color name="grey_light">#eeeeee</color>
     <color name="grey_dark">#666666</color>
 
     <color name="orange">#ffc430</color>
