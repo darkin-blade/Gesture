@@ -11,16 +11,24 @@ import android.widget.Button;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-public class AddSaveDialog extends DialogFragment {
+// 在新建手势功能中,提示保存方式的dialog
+
+public class SaveDialog extends DialogFragment {
+    public CreateManager createManager;// 新建手势库的文件管理器
+
     public Button btnNew;// 新建手势库
     public Button btnSave;// 保存至现有手势库
     public Button btnBack;// 返回
 
-    public View view;
+    static public View view;
+    static public FragmentManager fragmentManager;
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {// TODO 窗口切换
         super.show(fragmentManager, tag);
+
+        this.fragmentManager = fragmentManager;
+        createManager = new CreateManager();
     }
 
     @Override
@@ -49,6 +57,7 @@ public class AddSaveDialog extends DialogFragment {
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                createManager.show(fragmentManager, "new library");
                 dismiss();
             }
         });

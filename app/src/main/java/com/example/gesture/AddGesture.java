@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class AddGesture extends DialogFragment {
-    public AddSaveDialog addSaveDialog;
+    public SaveDialog addSaveDialog;
 
     public Button btnSave;// 保存手势
     public Button btnCancel;// 删除当前
@@ -34,7 +34,7 @@ public class AddGesture extends DialogFragment {
         MainActivity.window_num = 1;
 
         this.fragmentManager = fragmentManager;
-        addSaveDialog = new AddSaveDialog();// 提示框
+        addSaveDialog = new SaveDialog();// 提示框
     }
 
     @Override
