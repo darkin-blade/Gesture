@@ -17,11 +17,13 @@
 
 
         <android.gesture.GestureOverlayView
-            android:id="@+id/gesture"
+            android:id="@+id/gesture_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gestureStrokeType="multiple"
-            android:layout_marginBottom="@dimen/bottom_1"/>
+            android:gestureColor="@color/green"
+            android:layout_marginBottom="@dimen/bottom_1">
+        </android.gesture.GestureOverlayView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,15 +41,15 @@
                 android:padding="6dp"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/exit_button"
+                    android:id="@+id/button_1"
                     android:text="Back"
                     style="@style/delete_button"/>
                 <Button
-                    android:id="@+id/cancel_button"
+                    android:id="@+id/button_2"
                     android:text="Cancel"
                     style="@style/cancel_button"/>
                 <Button
-                    android:id="@+id/save_button"
+                    android:id="@+id/button_3"
                     android:text="Save"
                     style="@style/save_button"/>
             </LinearLayout>
