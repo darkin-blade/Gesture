@@ -45,8 +45,8 @@ public class AddGesture extends DialogFragment {
         view = inflater.inflate(R.layout.add_gesture, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
-        // 绑定按钮事件
-        initButton();
+        initGesture();// 初始化手势
+        initButton();// 绑定按钮事件
 
         return view;
     }

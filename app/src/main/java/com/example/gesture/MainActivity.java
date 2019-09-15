@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         btnAdd.setOnClickListener(new View.OnClickListener() {// 点击`打开`按钮
             @Override
             public void onClick(View view) {
-                addGesture.show(getSupportFragmentManager(), "open");
+                addGesture.show(getSupportFragmentManager(), "add");
             }
         });
     }

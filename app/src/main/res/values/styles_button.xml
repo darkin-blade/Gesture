@@ -33,7 +33,7 @@
         <item name="android:lines">1</item>
         <item name="android:textSize">@dimen/item_size</item>
 
-        <item name="android:background">@drawable/button_2</item>
+        <item name="android:background">@drawable/button_1</item>
         <item name="android:textColor">@color/white</item>
     </style>
     <style name="item_2" parent="item_1">
