@@ -14,9 +14,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="10dp"
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/add_gesture"
             style="@style/item_1"
             android:text="Add gesture">
         </Button>
