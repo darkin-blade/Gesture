@@ -28,8 +28,9 @@
             android:text="Test gesture">
         </Button>
         <Button
+            android:id="@+id/open_library"
             style="@style/item_3"
-            android:text="TODO">
+            android:text="Open library">
         </Button>
         <Button
             style="@style/item_4"

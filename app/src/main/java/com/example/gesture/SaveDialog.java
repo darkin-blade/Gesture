@@ -14,8 +14,8 @@ import androidx.fragment.app.FragmentManager;
 // 在新建手势功能中,提示保存方式的dialog
 
 public class SaveDialog extends DialogFragment {
-    public CreateManager createManager;// 新建手势库的文件管理器
-    public AddManager addManager;// 加入至已有手写库
+    public NewLibrary newLibrary;// 新建手势库的文件管理器
+    public AddLibrary addLibrary;// 加入至已有手写库
 
     public Button btnNew;// 新建手势库
     public Button btnSave;// 保存至现有手势库
@@ -29,8 +29,8 @@ public class SaveDialog extends DialogFragment {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
-        createManager = new CreateManager();
-        addManager = new AddManager();
+        newLibrary = new NewLibrary();
+        addLibrary = new AddLibrary();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SaveDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("fuck", "on create view");
-        view = inflater.inflate(R.layout.add_save_dialog, container);
+        view = inflater.inflate(R.layout.dialog_save, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initButton();// 绑定按钮事件
@@ -59,7 +59,7 @@ public class SaveDialog extends DialogFragment {
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createManager.show(fragmentManager, "new library");
+                newLibrary.show(fragmentManager, "new library");
                 dismiss();
             }
         });
@@ -68,7 +68,7 @@ public class SaveDialog extends DialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addManager.show(fragmentManager, "add to library");
+                addLibrary.show(fragmentManager, "add to library");
                 dismiss();
             }
         });

@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,17 +17,15 @@ import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
 
-// `添加至已有手势库`的文件管理器
-
-public class AddManager extends DialogFragment {
-    public Button cancel;
-    public TextView curPath;
+public class OpenLibrary extends DialogFragment {
+    public Button cancel;// 返回
+    public TextView curPath;// 当前路径
 
     int item_height = 130;
     int type_padding = 20;
     int name_padding = 40;
 
-    static public String path;
+    static public String path;// 打开的库的路径
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -44,7 +41,7 @@ public class AddManager extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("fuck", "on create view");
-        View view = inflater.inflate(R.layout.manager_add, container);
+        View view = inflater.inflate(R.layout.library_add, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         // 绑定按钮事件
@@ -171,4 +168,5 @@ public class AddManager extends DialogFragment {
 
         return item;
     }
+
 }
