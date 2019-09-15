@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class SaveDialog extends DialogFragment {
     public CreateManager createManager;// 新建手势库的文件管理器
+    public AddManager addManager;// 加入至已有手写库
 
     public Button btnNew;// 新建手势库
     public Button btnSave;// 保存至现有手势库
@@ -29,6 +30,7 @@ public class SaveDialog extends DialogFragment {
 
         this.fragmentManager = fragmentManager;
         createManager = new CreateManager();
+        addManager = new AddManager();
     }
 
     @Override
@@ -66,6 +68,7 @@ public class SaveDialog extends DialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addManager.show(fragmentManager, "add to library");
                 dismiss();
             }
         });
