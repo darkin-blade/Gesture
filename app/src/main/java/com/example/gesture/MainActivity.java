@@ -10,6 +10,7 @@ import android.gesture.GestureOverlayView;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         gesture.addOnGesturePerformedListener(new GestureOverlayView.OnGesturePerformedListener() {
             @Override
             public void onGesturePerformed(GestureOverlayView gestureOverlayView, final Gesture gesture) {
+                Log.i("fuck", "shit");
                 View saveDialog = getLayoutInflater().inflate(R.layout.dialog_save,null,false);
                 ImageView img_show = (ImageView) saveDialog.findViewById(R.id.gesture_img);
                 final EditText edit_name = (EditText) saveDialog.findViewById(R.id.edit_name);

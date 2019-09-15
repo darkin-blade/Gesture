@@ -3,12 +3,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        style="@style/bar_2"
+        android:text="Add gesture">
+    </TextView>
 
-    <!-- gestureStrokeType控制手势是否需要一笔完成,multiple表示允许多笔-->
     <android.gesture.GestureOverlayView
         android:id="@+id/gesture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gestureStrokeType="multiple" />
+        android:gestureStrokeType="multiple"
+        android:background="@color/grey"/>
 
 </LinearLayout>
