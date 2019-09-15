@@ -58,7 +58,7 @@ public class AddGesture extends DialogFragment {
     }
 
     public void initButton() {
-        ;
+
     }
 
 
