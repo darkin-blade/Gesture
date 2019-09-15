@@ -44,17 +44,21 @@
             <Button
                 android:id="@+id/button_1"
                 android:text="Back"
-                style="@style/delete_button"/>
+                style="@style/delete_button"
+                android:layout_marginRight="2dp"/>
 
             <Button
                 android:id="@+id/button_2"
                 android:text="existed library"
-                style="@style/cancel_button"/>
+                style="@style/cancel_button"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"/>
 
             <Button
                 android:id="@+id/button_3"
                 android:text="new library"
-                style="@style/save_button"/>
+                style="@style/save_button"
+                android:layout_marginLeft="2dp"/>
 
         </LinearLayout>
     </LinearLayout>
