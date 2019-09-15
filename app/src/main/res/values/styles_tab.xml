@@ -4,6 +4,7 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <!-- 上面的东西不管 -->
     <!-- 顶栏 -->
     <style name="bar_1">
         <item name="android:textSize">@dimen/bar_size</item>
@@ -43,6 +44,7 @@
         <item name="android:layout_height">1dp</item>
     </style>
 
+    <!-- 高宽参数 -->
     <!-- 顶栏 -->
     <dimen name="bar_height">55dp</dimen>
     <dimen name="bar_size">23dp</dimen>

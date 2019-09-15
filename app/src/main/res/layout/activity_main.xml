@@ -11,11 +11,32 @@
     </TextView>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <Button
+            style="@style/item_1"
+            android:text="Add gesture">
+        </Button>
+        <Button
+            style="@style/item_2"
+            android:text="Add gesture">
+        </Button>
+        <Button
+            style="@style/item_3"
+            android:text="Add gesture">
+        </Button>
+        <Button
+            style="@style/item_4"
+            android:text="Add gesture">
+        </Button>
+        <Button
+            style="@style/item_exit"
+            android:text="Exit">
+        </Button>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </LinearLayout>
