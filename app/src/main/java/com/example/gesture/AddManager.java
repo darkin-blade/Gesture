@@ -18,19 +18,17 @@ import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
 
-// `新建手势库`的文件管理器
+// `添加至已有手势库`的文件管理器
 
-public class CreateManager extends DialogFragment {
-    public Button yes;
+public class AddManager extends DialogFragment {
     public Button cancel;
-    public EditText fileName;
     public TextView curPath;
-
-    public String path;
 
     int item_height = 130;
     int type_padding = 20;
     int name_padding = 40;
+
+    static public String path;
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -46,7 +44,7 @@ public class CreateManager extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("fuck", "on create view");
-        View view = inflater.inflate(R.layout.manager_save, container);
+        View view = inflater.inflate(R.layout.manager_add, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         // 绑定按钮事件
@@ -68,32 +66,8 @@ public class CreateManager extends DialogFragment {
     }
 
     private void initButton(View view) {
-        yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
-        fileName = view.findViewById(R.id.file_name);// 输入框
         curPath = view.findViewById(R.id.cur_path);// 路径框
-
-        yes.setOnClickListener(new View.OnClickListener() {//
-            @Override
-            public void onClick(View view) {
-                // 文件名不能为空
-                if (fileName.getText().toString().length() == 0) {
-                    MainActivity.infoToast(getContext(), "file name can't be empty");
-                    return;
-                }
-
-                path = curPath.getText().toString() + "/" + fileName.getText().toString();
-
-                // 判断有无重名
-                File file = new File(path);
-                if (file.exists() == false) {// 没有重名
-                    dismiss();
-                } else {
-                    MainActivity.infoToast(getContext(), path + " already exists");
-                    return;
-                }
-            }
-        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,8 +157,14 @@ public class CreateManager extends DialogFragment {
                     readPath(itemPath + "/" + itemName, manager);
                 }
             });
-        } else {// `点击`文件,没有任何反应
-            ;
+        } else {// `点击`获取文件名
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    path = itemPath + "/" + itemName;
+                    dismiss();
+                }
+            });
         }
 
         layout.addView(item);

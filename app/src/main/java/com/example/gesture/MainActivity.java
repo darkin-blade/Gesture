@@ -1,35 +1,25 @@
 package com.example.gesture;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.gesture.Gesture;
-import android.gesture.GestureLibraries;
-import android.gesture.GestureLibrary;
-import android.gesture.GestureOverlayView;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
     AddGesture addGesture;// 1
 
     static public String appPath;// app路径
 
-    static public int window_num;// 模式
+    static public int window_num;// TODO 模式
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
