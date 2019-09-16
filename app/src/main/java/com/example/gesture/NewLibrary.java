@@ -42,20 +42,20 @@ public class NewLibrary extends NormalManager {
         yes.setOnClickListener(new View.OnClickListener() {//
             @Override
             public void onClick(View view) {
-                nameLibrary = curPath.getText().toString() + "/" + textLibrary.getText().toString();// 获取手势库的路径
-                nameGesture = textGesture.getText().toString();// 手势名称
-
                 // 库名称不能为空
-                if (nameLibrary.length() == 0) {
+                if (textLibrary.getText() == null) {
                     MainActivity.infoToast(getContext(), "library name can't be empty");
                     return;
                 }
 
                 // 手势名称不能为空
-                if (nameGesture.length() == 0) {
+                if (textGesture.getText() == null) {
                     MainActivity.infoToast(getContext(), "gesture name can't be empty");
                     return;
                 }
+
+                nameLibrary = curPath.getText().toString() + "/" + textLibrary.getText().toString();// 获取手势库的路径
+                nameGesture = textGesture.getText().toString();// 手势名称
 
                 // 判断有无重名
                 File file = new File(nameLibrary);
