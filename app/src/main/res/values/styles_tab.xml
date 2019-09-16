@@ -95,6 +95,7 @@
     <dimen name="bottom_1">60dp</dimen>
     <dimen name="bottom_2">120dp</dimen>
     <dimen name="bottom_3">180dp</dimen>
+    <dimen name="bottom_4">95dp</dimen>
 
     <!-- 手势图片 -->
     <dimen name="img_height">250dp</dimen>
