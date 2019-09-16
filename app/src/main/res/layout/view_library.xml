@@ -9,27 +9,9 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="Open library"
-        style="@style/title_white">
+        style="@style/bar_2"
+        android:text="View Library">
     </TextView>
-
-    <View
-        style="@style/line">
-    </View>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tab_height"
-        android:scrollbars="none">
-        <TextView
-            android:id="@+id/cur_path"
-            style="@style/tab_white">
-        </TextView>
-    </HorizontalScrollView>
-
-    <View
-        style="@style/line">
-    </View>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -67,9 +49,16 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/cancel_button"
-                    style="@style/cancel_button"
-                    android:text="Cancel"/>
+                    android:id="@+id/button_1"
+                    style="@style/delete_button"
+                    android:layout_marginRight="2dp"
+                    android:text="Back"/>
+
+                <Button
+                    android:id="@+id/button_2"
+                    style="@style/save_button"
+                    android:layout_marginLeft="2dp"
+                    android:text="Open"/>
 
             </LinearLayout>
 
