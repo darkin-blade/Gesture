@@ -45,13 +45,6 @@ public class NewLibrary extends NormalManager {
                 nameLibrary = curPath.getText().toString() + "/" + textLibrary.getText().toString();// 获取手势库的路径
                 nameGesture = textGesture.getText().toString();// 手势名称
 
-                // 判断有无重名
-                File file = new File(nameLibrary);
-                if (file.exists() == true) {// 有重名
-                    MainActivity.infoToast(getContext(), nameLibrary + " already exists");
-                    return;
-                }
-
                 // 库名称不能为空
                 if (nameLibrary.length() == 0) {
                     MainActivity.infoToast(getContext(), "library name can't be empty");
@@ -61,6 +54,13 @@ public class NewLibrary extends NormalManager {
                 // 手势名称不能为空
                 if (nameGesture.length() == 0) {
                     MainActivity.infoToast(getContext(), "gesture name can't be empty");
+                    return;
+                }
+
+                // 判断有无重名
+                File file = new File(nameLibrary);
+                if (file.exists() == true) {// 有重名
+                    MainActivity.infoToast(getContext(), nameLibrary + " already exists");
                     return;
                 }
 
