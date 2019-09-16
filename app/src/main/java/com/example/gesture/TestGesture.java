@@ -15,6 +15,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class TestGesture extends DialogFragment {
+    public OpenLibrary openLibrary;// 打开手势库
+
     public Button btnOpen;// 打开手势库
     public Button btnReco;// 识别手势
     public Button btnCancel;// 删除当前
@@ -26,13 +28,15 @@ public class TestGesture extends DialogFragment {
     static public View view;
     static public FragmentManager fragmentManager;
 
-    public String nameLibrary = null;// 手势库路径
+    public String nameLibrary;// 手势库路径
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
+        nameLibrary = null;// 初始化路径
+        openLibrary = new OpenLibrary();
     }
 
     @Override
@@ -63,7 +67,7 @@ public class TestGesture extends DialogFragment {
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ;
+                openLibrary.show(fragmentManager, "open");
             }
         });
 
