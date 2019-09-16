@@ -28,12 +28,13 @@ public class NormalManager extends DialogFragment {
     public int type_padding = 20;
     public int name_padding = 40;
 
-    public String path;// 打开的库的路径
+    public String nameLibrary;// 打开的库的路径
+    public String nameGesture;// 手势名称
 
     public View myView;
     public TextView curPath;// 当前路径
-    public EditText nameLibrary;// 新手势库命名
-    public EditText nameGesture;// 新收拾命名
+    public EditText textLibrary;// 新手势库命名
+    public EditText textGesture;// 新收拾命名
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -72,7 +73,7 @@ public class NormalManager extends DialogFragment {
     public void readPath(final String dirPath) {
         // 特判根目录
         if (dirPath == null) {
-            MainActivity.infoToast(getContext(), "can't access this path");
+            MainActivity.infoToast(getContext(), "can't access this nameLibrary");
             dismiss();// 强制返回
             return;
         }

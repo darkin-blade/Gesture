@@ -62,7 +62,7 @@ public class AddLibrary extends NormalManager {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    path = itemPath + "/" + itemName;
+                    nameLibrary = itemPath + "/" + itemName;
                     dismiss();
                 }
             });

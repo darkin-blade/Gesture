@@ -1,6 +1,8 @@
 package com.example.gesture;
 
 import android.app.Activity;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,34 +36,39 @@ public class NewLibrary extends NormalManager {
     public void initButton(View view) {
         yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
-        nameLibrary = view.findViewById(R.id.library_name);// 新手势库名称
-        nameGesture = view.findViewById(R.id.gesture_name);// 新手势名称
+        textLibrary = view.findViewById(R.id.library_name);// 新手势库名称
+        textGesture = view.findViewById(R.id.gesture_name);// 新手势名称
 
         yes.setOnClickListener(new View.OnClickListener() {//
             @Override
             public void onClick(View view) {
+                nameLibrary = curPath.getText().toString() + "/" + textLibrary.getText().toString();// 获取手势库的路径
+                nameGesture = textGesture.getText().toString();// 手势名称
+
                 // 库名称不能为空
-                if (nameLibrary.getText().toString().length() == 0) {
+                if (nameLibrary.length() == 0) {
                     MainActivity.infoToast(getContext(), "library name can't be empty");
                     return;
                 }
 
                 // 手势名称不能为空
-                if (nameGesture.getText().toString().length() == 0) {
+                if (nameGesture.length() == 0) {
                     MainActivity.infoToast(getContext(), "gesture name can't be empty");
                     return;
                 }
 
-                path = curPath.getText().toString() + "/" + nameLibrary.getText().toString();// 获取手势库的路径
-
                 // 判断有无重名
-                File file = new File(path);
+                File file = new File(nameLibrary);
                 if (file.exists() == true) {// 有重名
-                    MainActivity.infoToast(getContext(), path + " already exists");
+                    MainActivity.infoToast(getContext(), nameLibrary + " already exists");
                     return;
                 }
 
-                // TODO 判断手势库中是否有重名
+                // 创建新的手势库
+                GestureLibrary gestureLibrary = GestureLibraries.fromFile(nameLibrary);
+                gestureLibrary.addGesture(nameGesture, MainActivity.addGesture.gesture);
+                gestureLibrary.save();
+                dismiss();
             }
         });
 
