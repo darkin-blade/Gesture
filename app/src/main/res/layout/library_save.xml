@@ -61,7 +61,7 @@
             </View>
 
             <EditText
-                android:id="@+id/file_name"
+                android:id="@+id/library_name"
                 android:layout_width="match_parent"
                 style="@style/dialog_input"/>
 

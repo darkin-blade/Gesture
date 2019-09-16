@@ -15,13 +15,17 @@
         android:padding="7dp">
 
         <TextView
-            android:id="@+id/attention"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="How to save this gesture?"
+            android:text="Input gesture name:"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_margin="10dp"/>
+
+        <EditText
+            android:id="@+id/gesture_name"
+            android:layout_width="match_parent"
+            style="@style/dialog_input"/>
 
         <View
             style="@style/line">
@@ -31,6 +35,18 @@
             android:id="@+id/gesture_show"
             style="@style/gesture_show">
         </ImageView>
+
+        <View
+            style="@style/line">
+        </View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to save this gesture?"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

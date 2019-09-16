@@ -90,7 +90,7 @@ public class SaveDialog extends DialogFragment {
 
     public void displayGesture() {
         gestureShow = view.findViewById(R.id.gesture_show);// 手势预览
-        Bitmap bitmap = MainActivity.addGesture.gesture.toBitmap(400, 400, 10, 0xff0000);
+        Bitmap bitmap = MainActivity.addGesture.gesture.toBitmap(400, 400, 10, 0xff30f030);
         MainActivity.infoLog((bitmap == null) + "");
         gestureShow.setImageBitmap(bitmap);
     }

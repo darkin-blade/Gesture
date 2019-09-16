@@ -70,7 +70,7 @@ public class NewLibrary extends DialogFragment {
     private void initButton(View view) {
         yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
-        fileName = view.findViewById(R.id.file_name);// 输入框
+        fileName = view.findViewById(R.id.library_name);// 新手势库名称
         curPath = view.findViewById(R.id.cur_path);// 路径框
 
         yes.setOnClickListener(new View.OnClickListener() {//
