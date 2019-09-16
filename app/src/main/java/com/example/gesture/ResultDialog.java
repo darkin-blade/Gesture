@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -64,5 +65,11 @@ public class ResultDialog extends DialogFragment {
 
     public void showResult() {// 显示手势匹配结果
         gestureResult = view.findViewById(R.id.gesture_result);// 结果列表
+
+        for (int i = 0; i < results.size() ; i ++) {
+            TextView textView = new TextView(getContext());
+            textView.setText(results.get(i));
+            gestureResult.addView(textView);
+        }
     }
 }
