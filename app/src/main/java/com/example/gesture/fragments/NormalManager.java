@@ -28,7 +28,7 @@ public class NormalManager extends DialogFragment {
     public int type_padding = 20;
     public int name_padding = 40;
 
-    static public String path;// 打开的库的路径
+    public String path;// 打开的库的路径
 
     public View myView;
     public TextView curPath;// 当前路径

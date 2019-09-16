@@ -40,22 +40,28 @@ public class NewLibrary extends NormalManager {
         yes.setOnClickListener(new View.OnClickListener() {//
             @Override
             public void onClick(View view) {
-                // 文件名不能为空
+                // 库名称不能为空
                 if (nameLibrary.getText().toString().length() == 0) {
-                    MainActivity.infoToast(getContext(), "file name can't be empty");
+                    MainActivity.infoToast(getContext(), "library name can't be empty");
                     return;
                 }
 
-                path = curPath.getText().toString() + "/" + nameLibrary.getText().toString();
+                // 手势名称不能为空
+                if (nameGesture.getText().toString().length() == 0) {
+                    MainActivity.infoToast(getContext(), "gesture name can't be empty");
+                    return;
+                }
+
+                path = curPath.getText().toString() + "/" + nameLibrary.getText().toString();// 获取手势库的路径
 
                 // 判断有无重名
                 File file = new File(path);
-                if (file.exists() == false) {// 没有重名
-                    dismiss();
-                } else {
+                if (file.exists() == true) {// 有重名
                     MainActivity.infoToast(getContext(), path + " already exists");
                     return;
                 }
+
+                // TODO 判断手势库中是否有重名
             }
         });
 
