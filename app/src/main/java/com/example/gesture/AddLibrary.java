@@ -74,6 +74,10 @@ public class AddLibrary extends NormalManager {
 
                     // 加入手势库
                     GestureLibrary gestureLibrary = GestureLibraries.fromFile(nameLibrary);
+                    if (gestureLibrary.load() == false) {// 加载手势库
+                        MainActivity.infoToast(getContext(), "can't load this library");
+                        return;
+                    }
                     gestureLibrary.addGesture(nameGesture, AddGesture.gesture);
                     gestureLibrary.save();
                     dismiss();

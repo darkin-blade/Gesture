@@ -61,8 +61,6 @@ public class OpenLibrary extends NormalManager {
                 @Override
                 public void onClick(View view) {
                     nameLibrary = itemPath + "/" + itemName;// TODO 手势库路径
-                    MainActivity.infoLog("library: " + nameLibrary);
-                    MainActivity.testGesture.gestureLibrary = GestureLibraries.fromFile(nameLibrary);// 打开手势库
                     dismiss();
                 }
             });

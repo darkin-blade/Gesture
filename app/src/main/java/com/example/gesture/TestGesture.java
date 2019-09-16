@@ -1,6 +1,7 @@
 package com.example.gesture;
 
 import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.Prediction;
@@ -82,6 +83,8 @@ public class TestGesture extends DialogFragment {
         btnReco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gestureLibrary = GestureLibraries.fromFile(openLibrary.nameLibrary);// 打开手势库
+
                 // 检查手势库
                 if (gestureLibrary == null) {
                     MainActivity.infoToast(getContext(), "you haven't open any library");
@@ -102,11 +105,12 @@ public class TestGesture extends DialogFragment {
                 }
 
                 ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
+                MainActivity.infoLog("size: " + predictions.size());
                 resultDialog = new ResultDialog();// 结果初始化
                 resultDialog.results = new ArrayList<String>();// 识别结果
                 for (Prediction prediction : predictions) {
                     MainActivity.infoLog(prediction.name + ":" + prediction.score);
-                    if (prediction.score > 2.0) {
+                    if (prediction.score > 20.0) {
                         resultDialog.results.add(prediction.name + ": " + prediction.score);// 匹配相似度
                     }
                 }

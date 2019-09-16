@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
             }
         });
 
-        Button btnOpen = findViewById(R.id.open_library);
+        Button btnOpen = findViewById(R.id.view_library);
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
