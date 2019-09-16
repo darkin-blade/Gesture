@@ -15,11 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
-    AddGesture addGesture;// 添加新的手势
-    TestGesture testGesture;// 测试手势库
-    OpenLibrary openLibrary;// 打开手势库
+    static AddGesture addGesture;// 添加新的手势
+    static TestGesture testGesture;// 测试手势库
+    static OpenLibrary openLibrary;// 打开手势库
 
     static public String appPath;// app路径
+    static public final int ADD_TO_LIBRARY = 12;
 
     static public int window_num;// TODO 模式
 
@@ -89,14 +90,11 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
 
     @Override
     public void onDismiss(DialogInterface dialogInterface) {
+        infoLog("window_num: " + window_num);
         switch (window_num) {
-            case 1:
-                resAdd();
+            case ADD_TO_LIBRARY:
+                addGesture.addToLibrary();// 添加至已有的手势库
                 break;
         }
-    }
-
-    public void resAdd() {
-        ;
     }
 }

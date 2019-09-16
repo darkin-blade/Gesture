@@ -1,5 +1,7 @@
 package com.example.gesture;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;

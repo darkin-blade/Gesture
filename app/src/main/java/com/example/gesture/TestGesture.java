@@ -30,7 +30,6 @@ public class TestGesture extends DialogFragment {
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
-        MainActivity.window_num = 1;
 
         this.fragmentManager = fragmentManager;
         addSaveDialog = new SaveDialog();// 提示框

@@ -58,6 +58,7 @@ public class AddLibrary extends DialogFragment {
     @Override
     public void onDismiss(final DialogInterface dialog) {
         super.onDismiss(dialog);
+        MainActivity.window_num = MainActivity.ADD_TO_LIBRARY;
         Activity activity = getActivity();
         if (activity instanceof DialogInterface.OnDismissListener) {
             ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
