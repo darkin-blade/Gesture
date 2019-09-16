@@ -57,8 +57,9 @@
 
     <!-- 输入框 -->
     <style name="dialog_input">
-        <item name="android:padding">2dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
+        <item name="android:padding">2dp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:background">@drawable/dialog_input</item>
         <item name="android:textColor">@color/black</item>
@@ -93,6 +94,7 @@
     <!-- 底栏 -->
     <dimen name="bottom_1">60dp</dimen>
     <dimen name="bottom_2">120dp</dimen>
+    <dimen name="bottom_3">180dp</dimen>
 
     <!-- 手势图片 -->
     <dimen name="img_height">250dp</dimen>

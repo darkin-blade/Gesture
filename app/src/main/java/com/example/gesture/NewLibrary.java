@@ -34,18 +34,19 @@ public class NewLibrary extends NormalManager {
     public void initButton(View view) {
         yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
-        fileName = view.findViewById(R.id.library_name);// 新手势库名称
+        nameLibrary = view.findViewById(R.id.library_name);// 新手势库名称
+        nameGesture = view.findViewById(R.id.gesture_name);// 新手势名称
 
         yes.setOnClickListener(new View.OnClickListener() {//
             @Override
             public void onClick(View view) {
                 // 文件名不能为空
-                if (fileName.getText().toString().length() == 0) {
+                if (nameLibrary.getText().toString().length() == 0) {
                     MainActivity.infoToast(getContext(), "file name can't be empty");
                     return;
                 }
 
-                path = curPath.getText().toString() + "/" + fileName.getText().toString();
+                path = curPath.getText().toString() + "/" + nameLibrary.getText().toString();
 
                 // 判断有无重名
                 File file = new File(path);

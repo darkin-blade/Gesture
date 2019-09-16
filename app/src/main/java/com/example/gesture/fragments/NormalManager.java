@@ -2,7 +2,6 @@ package com.example.gesture.fragments;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,11 +28,12 @@ public class NormalManager extends DialogFragment {
     public int type_padding = 20;
     public int name_padding = 40;
 
+    static public String path;// 打开的库的路径
+
     public View myView;
     public TextView curPath;// 当前路径
-
-    public EditText fileName;// 新手势库命名
-    static public String path;// 打开的库的路径
+    public EditText nameLibrary;// 新手势库命名
+    public EditText nameGesture;// 新收拾命名
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -57,17 +57,7 @@ public class NormalManager extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("fuck", "on create view");
-        myView = inflater.inflate(R.layout.library_add, container);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
-
-        initPath(myView);// 初始化路径
-        initButton(myView);// 绑定按钮事件
-
-        // 调用文件管理器
-        Activity activity = getActivity();
-        readPath(activity.getExternalFilesDir("").getAbsolutePath());
-        return myView;
+        return null;
     }
 
     public void initPath(View view) {
