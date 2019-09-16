@@ -43,7 +43,6 @@ public class AddGesture extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("fuck", "on create view");
         view = inflater.inflate(R.layout.add_gesture, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 

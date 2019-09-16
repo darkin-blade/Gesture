@@ -47,7 +47,6 @@ public class SaveDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("fuck", "on create view");
         view = inflater.inflate(R.layout.dialog_save, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
@@ -91,7 +90,7 @@ public class SaveDialog extends DialogFragment {
 
     public void displayGesture() {
         gestureShow = view.findViewById(R.id.gesture_show);// 手势预览
-        Bitmap bitmap = MainActivity.addGesture.gesture.toBitmap(128, 128, 10, 0xff30f030);
+        Bitmap bitmap = AddGesture.gesture.toBitmap(128, 128, 10, 0xff30f030);
         MainActivity.infoLog((bitmap == null) + "");
         gestureShow.setImageBitmap(bitmap);
     }

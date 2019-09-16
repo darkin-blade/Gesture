@@ -20,7 +20,6 @@ import java.io.File;
 public class AddLibrary extends NormalManager {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("fuck", "on create view");
         myView = inflater.inflate(R.layout.library_add, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
@@ -75,7 +74,7 @@ public class AddLibrary extends NormalManager {
 
                     // 加入手势库
                     GestureLibrary gestureLibrary = GestureLibraries.fromFile(nameLibrary);
-                    gestureLibrary.addGesture(nameGesture, MainActivity.addGesture.gesture);
+                    gestureLibrary.addGesture(nameGesture, AddGesture.gesture);
                     gestureLibrary.save();
                     dismiss();
                 }

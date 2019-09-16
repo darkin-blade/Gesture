@@ -17,7 +17,6 @@ import java.io.File;
 public class OpenLibrary extends NormalManager {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("fuck", "on create view");
         myView = inflater.inflate(R.layout.library_open, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
@@ -62,6 +61,7 @@ public class OpenLibrary extends NormalManager {
                 @Override
                 public void onClick(View view) {
                     nameLibrary = itemPath + "/" + itemName;// TODO 手势库路径
+                    MainActivity.infoLog("library: " + nameLibrary);
                     MainActivity.testGesture.gestureLibrary = GestureLibraries.fromFile(nameLibrary);// 打开手势库
                     dismiss();
                 }
