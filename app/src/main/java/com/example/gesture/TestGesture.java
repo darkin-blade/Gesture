@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import androidx.fragment.app.DialogFragment;
@@ -88,6 +89,18 @@ public class TestGesture extends DialogFragment {
                 if (gesture == null) {// 没有输入手势
                     MainActivity.infoToast(getContext(), "please input gesture");
                     return;
+                }
+
+                ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
+                ArrayList<String> results = new ArrayList<String>();// 识别结果
+                for (Prediction prediction : predictions) {
+                    if (prediction.score > 2.0) {
+                        results.add(prediction.name + ": " + prediction.score);// 匹配相似度
+                    }
+                }
+
+                // 输出结果
+                if (results.size() > 0) {// 有匹配结果
                 }
             }
         });
