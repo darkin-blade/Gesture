@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,8 +29,10 @@ public class NormalManager extends DialogFragment {
     public int type_padding = 20;
     public int name_padding = 40;
 
+    public View myView;
     public TextView curPath;// 当前路径
 
+    public EditText fileName;// 新手势库命名
     static public String path;// 打开的库的路径
 
     @Override
@@ -55,16 +58,16 @@ public class NormalManager extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("fuck", "on create view");
-        View view = inflater.inflate(R.layout.library_add, container);
+        myView = inflater.inflate(R.layout.library_add, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
-        initPath(view);// 初始化路径
-        initButton(view);// 绑定按钮事件
+        initPath(myView);// 初始化路径
+        initButton(myView);// 绑定按钮事件
 
         // 调用文件管理器
         Activity activity = getActivity();
-        readPath(activity.getExternalFilesDir("").getAbsolutePath(), view);
-        return view;
+        readPath(activity.getExternalFilesDir("").getAbsolutePath());
+        return myView;
     }
 
     public void initPath(View view) {
@@ -76,7 +79,7 @@ public class NormalManager extends DialogFragment {
         ;
     }
 
-    public void readPath(final String dirPath, View manager) {
+    public void readPath(final String dirPath) {
         // 特判根目录
         if (dirPath == null) {
             MainActivity.infoToast(getContext(), "can't access this path");
@@ -85,19 +88,19 @@ public class NormalManager extends DialogFragment {
         }
 
         // 清空并显示父目录
-        LinearLayout layout = manager.findViewById(R.id.item_list);
+        LinearLayout layout = myView.findViewById(R.id.item_list);
         layout.removeAllViews();
-        createItem(2, "..", dirPath, manager);// 父目录
+        createItem(2, "..", dirPath);// 父目录
 
         // 遍历文件夹
         File dir = new File(dirPath);
         File[] items = dir.listFiles();
         if (items != null) {
-            for (int i = 0; i < items.length ; i++) {
+            for (int i = 0; i < items.length; i++) {
                 if (items[i].isDirectory()) {
-                    createItem(1, items[i].getName(), dirPath, manager);
+                    createItem(1, items[i].getName(), dirPath);
                 } else {
-                    createItem(0, items[i].getName(), dirPath, manager);
+                    createItem(0, items[i].getName(), dirPath);
                 }
             }
         }
@@ -106,9 +109,49 @@ public class NormalManager extends DialogFragment {
         curPath.setText(dirPath);// TODO 简化路径
     }
 
+    public LinearLayout createItem(int itemType, final String itemName, final String itemPath) {// 创建图标
+        LinearLayout layout = myView.findViewById(R.id.item_list);
+        LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, item_height);
+        LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(item_height, item_height);
+        LinearLayout.LayoutParams iconParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
+        LinearLayout item = new LinearLayout(getContext());// TODO 参数
+        item.setLayoutParams(itemParam);
+        item.setBackgroundResource(R.color.grey);
+        item.setPadding(name_padding, 0, 0, 0);
 
-    public LinearLayout createItem(int itemType, final String itemName, final String itemPath, final View manager) {// 创建图标
-        return null;
+        LinearLayout type = new LinearLayout(getContext());// 图标的外圈
+        type.setLayoutParams(typeParam);
+        type.setPadding(type_padding, type_padding, type_padding, type_padding);
+
+        View icon = new View(getContext());// 图标
+        icon.setLayoutParams(iconParam);
+        if (itemType == 0) {// 文件
+            icon.setBackgroundResource(R.drawable.item_file);
+        } else {// 文件夹
+            icon.setBackgroundResource(R.drawable.item_dir);
+        }
+
+        TextView name = new TextView(getContext());// 文件名
+        name.setLayoutParams(nameParam);
+        name.setBackgroundResource(R.color.grey);
+        name.setText(itemName);
+        name.setPadding(name_padding, name_padding, name_padding, name_padding);
+        name.setSingleLine();
+
+        type.addView(icon);
+        item.addView(type);
+        item.addView(name);
+
+        item = itemOnClick(itemType, itemName, itemPath, item);
+
+        layout.addView(item);
+
+        return item;
+    }
+
+    public LinearLayout itemOnClick(int itemType, final String itemName, final String itemPath, LinearLayout item) {// 绑定点击事件
+        return item;
     }
 }
