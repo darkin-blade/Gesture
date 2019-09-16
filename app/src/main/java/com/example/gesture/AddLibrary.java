@@ -1,7 +1,6 @@
 package com.example.gesture;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,14 +11,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
+import com.example.gesture.fragments.NormalManager;
 
 import java.io.File;
 
 // `添加至已有手势库`的文件管理器
 
-public class AddLibrary extends DialogFragment {
+public class AddLibrary extends NormalManager {
     public Button cancel;
     public TextView curPath;
 
@@ -28,17 +26,6 @@ public class AddLibrary extends DialogFragment {
     int name_padding = 40;
 
     static public String path;
-
-    @Override
-    public void show(FragmentManager fragmentManager, String tag) {
-        super.show(fragmentManager, tag);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme);// 关闭背景(点击外部不能取消)
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,17 +42,7 @@ public class AddLibrary extends DialogFragment {
         return view;
     }
 
-    @Override
-    public void onDismiss(final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        MainActivity.window_num = MainActivity.ADD_TO_LIBRARY;
-        Activity activity = getActivity();
-        if (activity instanceof DialogInterface.OnDismissListener) {
-            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
-        }
-    }
-
-    private void initButton(View view) {
+    public void initButton(View view) {
         cancel = view.findViewById(R.id.cancel_button);
         curPath = view.findViewById(R.id.cur_path);// 路径框
 
@@ -77,37 +54,7 @@ public class AddLibrary extends DialogFragment {
         });
     }
 
-    public void readPath(final String dirPath, View manager) {
-        // 特判根目录
-        if (dirPath == null) {
-            MainActivity.infoToast(getContext(), "can't access this path");
-            dismiss();// 强制返回
-            return;
-        }
-
-        // 清空并显示父目录
-        LinearLayout layout = manager.findViewById(R.id.item_list);
-        layout.removeAllViews();
-        createItem(2, "..", dirPath, manager);// 父目录
-
-        // 遍历文件夹
-        File dir = new File(dirPath);
-        File[] items = dir.listFiles();
-        if (items != null) {
-            for (int i = 0; i < items.length ; i++) {
-                if (items[i].isDirectory()) {
-                    createItem(1, items[i].getName(), dirPath, manager);
-                } else {
-                    createItem(0, items[i].getName(), dirPath, manager);
-                }
-            }
-        }
-
-        // 显示路径
-        curPath.setText(dirPath);// TODO 简化路径
-    }
-
-    private LinearLayout createItem(int itemType, final String itemName, final String itemPath, final View manager) {// 创建图标
+    public LinearLayout createItem(int itemType, final String itemName, final String itemPath, final View manager) {// 创建图标
         LinearLayout layout = manager.findViewById(R.id.item_list);
         LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, item_height);
         LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(item_height, item_height);

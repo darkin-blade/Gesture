@@ -13,14 +13,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
+import com.example.gesture.fragments.NormalManager;
 
 import java.io.File;
 
 // `新建手势库`的文件管理器
 
-public class NewLibrary extends DialogFragment {
+public class NewLibrary extends NormalManager {
     public Button yes;
     public Button cancel;
     public EditText fileName;
@@ -31,17 +30,6 @@ public class NewLibrary extends DialogFragment {
     int item_height = 130;
     int type_padding = 20;
     int name_padding = 40;
-
-    @Override
-    public void show(FragmentManager fragmentManager, String tag) {
-        super.show(fragmentManager, tag);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme);// 关闭背景(点击外部不能取消)
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,16 +46,7 @@ public class NewLibrary extends DialogFragment {
         return view;
     }
 
-    @Override
-    public void onDismiss(final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        Activity activity = getActivity();
-        if (activity instanceof DialogInterface.OnDismissListener) {
-            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
-        }
-    }
-
-    private void initButton(View view) {
+    public void initButton(View view) {
         yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
         fileName = view.findViewById(R.id.library_name);// 新手势库名称
@@ -103,37 +82,7 @@ public class NewLibrary extends DialogFragment {
         });
     }
 
-    public void readPath(final String dirPath, View manager) {
-        // 特判根目录
-        if (dirPath == null) {
-            MainActivity.infoToast(getContext(), "can't access this path");
-            dismiss();// 强制返回
-            return;
-        }
-
-        // 清空并显示父目录
-        LinearLayout layout = manager.findViewById(R.id.item_list);
-        layout.removeAllViews();
-        createItem(2, "..", dirPath, manager);// 父目录
-
-        // 遍历文件夹
-        File dir = new File(dirPath);
-        File[] items = dir.listFiles();
-        if (items != null) {
-            for (int i = 0; i < items.length ; i++) {
-                if (items[i].isDirectory()) {
-                    createItem(1, items[i].getName(), dirPath, manager);
-                } else {
-                    createItem(0, items[i].getName(), dirPath, manager);
-                }
-            }
-        }
-
-        // 显示路径
-        curPath.setText(dirPath);// TODO 简化路径
-    }
-
-    private LinearLayout createItem(int itemType, final String itemName, final String itemPath, final View manager) {// 创建图标
+    public LinearLayout createItem(int itemType, final String itemName, final String itemPath, final View manager) {// 创建图标
         LinearLayout layout = manager.findViewById(R.id.item_list);
         LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, item_height);
         LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(item_height, item_height);
