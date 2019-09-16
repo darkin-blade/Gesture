@@ -13,14 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
+// 打开手势库,并识别输入的手势
+
 public class TestGesture extends DialogFragment {
     public OpenLibrary openLibrary;// 打开手势库
+    public ResultDialog resultDialog;// 手势识别结果
 
     public Button btnOpen;// 打开手势库
     public Button btnReco;// 识别手势
@@ -41,6 +45,7 @@ public class TestGesture extends DialogFragment {
         this.fragmentManager = fragmentManager;
         gestureLibrary = null;// 初始化
         openLibrary = new OpenLibrary();
+        resultDialog = new ResultDialog();// 结果初始化
     }
 
     @Override
@@ -101,6 +106,7 @@ public class TestGesture extends DialogFragment {
 
                 // 输出结果
                 if (results.size() > 0) {// 有匹配结果
+                    resultDialog.show(fragmentManager, "result", results);//显示结果
                 }
             }
         });

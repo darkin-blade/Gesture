@@ -9,20 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-// 在新建手势功能中,提示保存方式的dialog
+import java.util.ArrayList;
+
+// 在识别手势功能中,显示手势识别的结果
 
 public class ResultDialog extends DialogFragment {public Button btnNew;// 新建手势库
-    public Button btnOk;// 保存至现有手势库
+    public Button btnOk;// 返回
+    public LinearLayout gestureResult;// 手势识别结果
+
+    public ArrayList<String> results;// 手势结果列表
 
     static public View view;
     static public FragmentManager fragmentManager;
-
-    @Override
-    public void show(FragmentManager fragmentManager, String tag) {// TODO 窗口切换
+    
+    public void show(FragmentManager fragmentManager, String tag, ArrayList<String> results) {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
@@ -41,6 +46,7 @@ public class ResultDialog extends DialogFragment {public Button btnNew;// 新建
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initButton();// 绑定按钮事件
+        showResult();
 
         return view;
     }
@@ -55,5 +61,9 @@ public class ResultDialog extends DialogFragment {public Button btnNew;// 新建
                 dismiss();
             }
         });
+    }
+
+    public void showResult() {// 显示手势匹配结果
+        gestureResult = view.findViewById(R.id.gesture_result);// 结果列表
     }
 }
