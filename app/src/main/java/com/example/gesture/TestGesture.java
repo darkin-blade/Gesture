@@ -15,15 +15,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class TestGesture extends DialogFragment {
-    public SaveDialog addSaveDialog;
-
     public Button btnCancel;// 删除当前
     public Button btnExit;// 返回到主页面
 
     public GestureOverlayView gestureOverlayView;
     public Gesture gesture;
 
-    static public String gesturePath;// 保存路径
     static public View view;
     static public FragmentManager fragmentManager;
 
@@ -32,7 +29,6 @@ public class TestGesture extends DialogFragment {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
-        addSaveDialog = new SaveDialog();// 提示框
     }
 
     @Override
@@ -74,9 +70,6 @@ public class TestGesture extends DialogFragment {
     }
 
     public void initGesture() {
-        // 初始化路径
-        gesturePath = MainActivity.appPath + "/gesture";
-
         // 设置颜色
         gestureOverlayView = view.findViewById(R.id.gesture_input);
         gestureOverlayView.setGestureStrokeWidth(5);

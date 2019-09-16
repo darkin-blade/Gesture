@@ -24,7 +24,6 @@ public class AddGesture extends DialogFragment {
     static public GestureOverlayView gestureOverlayView;
     static public Gesture gesture;
 
-    static public String gesturePath;// 保存路径
     static public View view;
     static public FragmentManager fragmentManager;
 
@@ -86,9 +85,6 @@ public class AddGesture extends DialogFragment {
     }
 
     public void initGesture() {
-        // 初始化路径
-        gesturePath = MainActivity.appPath + "/gesture";
-
         // 设置颜色
         gestureOverlayView = view.findViewById(R.id.gesture_input);
         gestureOverlayView.setGestureStrokeWidth(5);
