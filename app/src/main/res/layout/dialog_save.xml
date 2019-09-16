@@ -18,23 +18,19 @@
             android:id="@+id/attention"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saving gesture:"
+            android:text="How to save this gesture?"
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="16dp"
             android:layout_margin="10dp"/>
 
         <View
             style="@style/line">
         </View>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="How to save this gesture?"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"/>
+        <ImageView
+            android:id="@+id/gesture_show"
+            style="@style/gesture_show">
+        </ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"

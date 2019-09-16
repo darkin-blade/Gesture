@@ -110,7 +110,7 @@ public class AddGesture extends DialogFragment {
         });
     }
 
-    public void addToLibrary() {
-        MainActivity.infoLog("shit");
+    public void addToLibrary() {// 保存至已有的手势库
+        ;
     }
 }
