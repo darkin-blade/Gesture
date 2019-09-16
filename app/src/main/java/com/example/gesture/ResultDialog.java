@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 // 在识别手势功能中,显示手势识别的结果
 
-public class ResultDialog extends DialogFragment {public Button btnNew;// 新建手势库
+public class ResultDialog extends DialogFragment {
     public Button btnOk;// 返回
     public LinearLayout gestureResult;// 手势识别结果
 
@@ -26,8 +26,8 @@ public class ResultDialog extends DialogFragment {public Button btnNew;// 新建
 
     static public View view;
     static public FragmentManager fragmentManager;
-    
-    public void show(FragmentManager fragmentManager, String tag, ArrayList<String> results) {
+
+    public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
@@ -52,7 +52,7 @@ public class ResultDialog extends DialogFragment {public Button btnNew;// 新建
     }
 
     public void initButton() {
-        btnNew = view.findViewById(R.id.button_1);
+        btnOk = view.findViewById(R.id.button_1);
 
         // 返回
         btnOk.setOnClickListener(new View.OnClickListener() {

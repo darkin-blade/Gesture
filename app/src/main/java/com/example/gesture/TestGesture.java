@@ -87,6 +87,7 @@ public class TestGesture extends DialogFragment {
                 // 检查手势库
                 if (gestureLibrary == null) {
                     MainActivity.infoToast(getContext(), "you haven't open any library");
+                    return;
                 }
 
                 // 识别手势
@@ -106,7 +107,8 @@ public class TestGesture extends DialogFragment {
 
                 // 输出结果
                 if (results.size() > 0) {// 有匹配结果
-                    resultDialog.show(fragmentManager, "result", results);//显示结果
+                    resultDialog.results = results;// 复制结果
+                    resultDialog.show(fragmentManager, "result");//显示结果
                 }
             }
         });
