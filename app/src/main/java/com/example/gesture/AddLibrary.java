@@ -65,14 +65,14 @@ public class AddLibrary extends NormalManager {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // 手势名称不能为空
-                    if (textGesture.getText() == null) {
+                    nameLibrary = itemPath + "/" + itemName;
+                    nameGesture = textGesture.getText().toString();// 手势名称不能为空
+
+                    if (nameGesture.length() == 0) {
                         MainActivity.infoToast(getContext(), "gesture name can't be empty");
                         return;
                     }
 
-                    nameLibrary = itemPath + "/" + itemName;
-                    nameGesture = textGesture.getText().toString();
 
                     // 加入手势库
                     GestureLibrary gestureLibrary = GestureLibraries.fromFile(nameLibrary);

@@ -43,13 +43,13 @@ public class NewLibrary extends NormalManager {
             @Override
             public void onClick(View view) {
                 // 库名称不能为空
-                if (textLibrary.getText() == null) {
+                if (nameLibrary.length() == 0) {
                     MainActivity.infoToast(getContext(), "library name can't be empty");
                     return;
                 }
 
                 // 手势名称不能为空
-                if (textGesture.getText() == null) {
+                if (nameGesture.length() == 0) {
                     MainActivity.infoToast(getContext(), "gesture name can't be empty");
                     return;
                 }
