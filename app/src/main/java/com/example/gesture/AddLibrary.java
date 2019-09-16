@@ -1,6 +1,8 @@
 package com.example.gesture;
 
 import android.app.Activity;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class AddLibrary extends NormalManager {
 
     public void initButton(View view) {
         cancel = view.findViewById(R.id.cancel_button);
+        textGesture = view.findViewById(R.id.gesture_name);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +61,23 @@ public class AddLibrary extends NormalManager {
                     readPath(itemPath + "/" + itemName);
                 }
             });
-        } else {// `点击`获取文件名
+        } else {// 将手势存入该手势库
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     nameLibrary = itemPath + "/" + itemName;
+                    nameGesture = textGesture.getText().toString();
+
+                    // 手势名称不能为空
+                    if (nameGesture.length() == 0) {
+                        MainActivity.infoToast(getContext(), "gesture name can't be empty");
+                        return;
+                    }
+
+                    // 加入手势库
+                    GestureLibrary gestureLibrary = GestureLibraries.fromFile(nameLibrary);
+                    gestureLibrary.addGesture(nameGesture, MainActivity.addGesture.gesture);
+                    gestureLibrary.save();
                     dismiss();
                 }
             });
