@@ -56,11 +56,11 @@ public class OpenLibrary extends NormalManager {
                     readPath(itemPath + "/" + itemName);
                 }
             });
-        } else {// `点击`获取文件名
+        } else {// 获取手势库
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    nameLibrary = itemPath + "/" + itemName;
+                    MainActivity.testGesture.nameLibrary = itemPath + "/" + itemName;// TODO 手势库路径
                     dismiss();
                 }
             });

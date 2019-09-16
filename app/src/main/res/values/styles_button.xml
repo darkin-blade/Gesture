@@ -20,6 +20,9 @@
         <item name="android:background">@drawable/button_cancel</item>
         <item name="android:textColor">@color/grey_dark</item>
     </style>
+    <style name="open_button" parent="save_button">
+        <item name="android:background">@drawable/button_5</item>
+    </style>
 
     <!-- 主界面 -->
     <style name="item_1">

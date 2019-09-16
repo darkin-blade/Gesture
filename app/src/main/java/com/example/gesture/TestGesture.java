@@ -15,6 +15,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class TestGesture extends DialogFragment {
+    public Button btnOpen;// 打开手势库
+    public Button btnReco;// 识别手势
     public Button btnCancel;// 删除当前
     public Button btnExit;// 返回到主页面
 
@@ -23,6 +25,8 @@ public class TestGesture extends DialogFragment {
 
     static public View view;
     static public FragmentManager fragmentManager;
+
+    public String nameLibrary = null;// 手势库路径
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -50,8 +54,31 @@ public class TestGesture extends DialogFragment {
     }
 
     public void initButton() {
+        btnOpen = view.findViewById(R.id.button_4);
+        btnReco = view.findViewById(R.id.button_3);
         btnCancel = view.findViewById(R.id.button_2);
         btnExit = view.findViewById(R.id.button_1);
+
+        // 打开手势库
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ;
+            }
+        });
+
+        // 识别当前手势
+        btnReco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (nameLibrary == null) {// 没有打开手势库
+                    MainActivity.infoToast(getContext(), "you haven't open any library");
+                    return;
+                }
+
+                // 识别手势
+            }
+        });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
