@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,8 +22,8 @@ public class AddGesture extends DialogFragment {
     public Button btnCancel;// 删除当前
     public Button btnExit;// 返回到主页面
 
-    public GestureOverlayView gestureOverlayView;
-    public Gesture gesture;
+    static public GestureOverlayView gestureOverlayView;
+    static public Gesture gesture;
 
     static public String gesturePath;// 保存路径
     static public View view;

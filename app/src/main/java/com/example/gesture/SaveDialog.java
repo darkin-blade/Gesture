@@ -2,6 +2,7 @@ package com.example.gesture;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +24,7 @@ public class SaveDialog extends DialogFragment {
     public Button btnNew;// 新建手势库
     public Button btnSave;// 保存至现有手势库
     public Button btnBack;// 返回
+    public ImageView gestureShow;// 手势预览
 
     static public View view;
     static public FragmentManager fragmentManager;
@@ -48,6 +51,7 @@ public class SaveDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initButton();// 绑定按钮事件
+        displayGesture();// 预览手势
 
         return view;
     }
@@ -82,5 +86,11 @@ public class SaveDialog extends DialogFragment {
                 dismiss();
             }
         });
+    }
+
+    public void displayGesture() {
+        gestureShow = view.findViewById(R.id.gesture_show);// 手势预览
+        Bitmap bitmap = MainActivity.addGesture.gesture.toBitmap(128, 128, 10, 0x000000);
+        gestureShow.setImageBitmap(bitmap);
     }
 }
