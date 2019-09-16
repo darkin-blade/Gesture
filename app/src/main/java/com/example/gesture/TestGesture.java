@@ -45,7 +45,6 @@ public class TestGesture extends DialogFragment {
         this.fragmentManager = fragmentManager;
         gestureLibrary = null;// 初始化
         openLibrary = new OpenLibrary();
-        resultDialog = new ResultDialog();// 结果初始化
     }
 
     @Override
@@ -98,18 +97,17 @@ public class TestGesture extends DialogFragment {
                 }
 
                 ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
-                ArrayList<String> results = new ArrayList<String>();// 识别结果
+                resultDialog = new ResultDialog();// 结果初始化
+                resultDialog.results = new ArrayList<String>();// 识别结果
                 for (Prediction prediction : predictions) {
+                    MainActivity.infoLog(prediction.name + ":" + prediction.score);
                     if (prediction.score > 2.0) {
-                        results.add(prediction.name + ": " + prediction.score);// 匹配相似度
+                        resultDialog.results.add(prediction.name + ": " + prediction.score);// 匹配相似度
                     }
                 }
 
                 // 输出结果
-                if (results.size() > 0) {// 有匹配结果
-                    resultDialog.results = results;// 复制结果
-                    resultDialog.show(fragmentManager, "result");//显示结果
-                }
+                resultDialog.show(fragmentManager, "result");//显示结果
             }
         });
 

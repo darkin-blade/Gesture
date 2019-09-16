@@ -65,5 +65,7 @@ public class ResultDialog extends DialogFragment {
 
     public void showResult() {// 显示手势匹配结果
         gestureResult = view.findViewById(R.id.gesture_result);// 结果列表
+
+        MainActivity.infoLog("total: " + results.size());
     }
 }
