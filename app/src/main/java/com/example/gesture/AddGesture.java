@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -63,7 +62,10 @@ public class AddGesture extends DialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveDialog.show(fragmentManager, "add save");
+                gesture = gestureOverlayView.getGesture();
+                if (gesture != null) {// TODO
+                    saveDialog.show(fragmentManager, "add save");
+                }
             }
         });
 
@@ -109,9 +111,5 @@ public class AddGesture extends DialogFragment {
             public void onGestureCancelled(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
             }
         });
-    }
-
-    public void addToLibrary() {// 保存至已有的手势库
-        ;
     }
 }

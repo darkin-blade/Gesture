@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         infoLog("window_num: " + window_num);
         switch (window_num) {
             case ADD_TO_LIBRARY:
-                addGesture.addToLibrary();// 添加至已有的手势库
+                ;// TODO 添加至已有的手势库
                 break;
         }
     }
