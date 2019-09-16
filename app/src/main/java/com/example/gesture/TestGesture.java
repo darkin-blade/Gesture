@@ -95,6 +95,12 @@ public class TestGesture extends DialogFragment {
                     return;
                 }
 
+                // 加载手势库
+                if (gestureLibrary.load() == false) {
+                    MainActivity.infoToast(getContext(), "can't load this library");
+                    return;
+                }
+
                 ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
                 MainActivity.infoLog("size: " + predictions.size());
                 resultDialog = new ResultDialog();// 结果初始化
