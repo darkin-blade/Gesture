@@ -18,23 +18,14 @@ import java.io.File;
 // `添加至已有手势库`的文件管理器
 
 public class AddLibrary extends NormalManager {
-    public Button cancel;
-    public TextView curPath;
-
-    int item_height = 130;
-    int type_padding = 20;
-    int name_padding = 40;
-
-    static public String path;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("fuck", "on create view");
         View view = inflater.inflate(R.layout.library_add, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
-        // 绑定按钮事件
-        initButton(view);
+        initPath(view);// 初始化路径
+        initButton(view);// 绑定按钮事件
 
         // 调用文件管理器
         Activity activity = getActivity();
@@ -44,7 +35,6 @@ public class AddLibrary extends NormalManager {
 
     public void initButton(View view) {
         cancel = view.findViewById(R.id.cancel_button);
-        curPath = view.findViewById(R.id.cur_path);// 路径框
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

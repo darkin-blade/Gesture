@@ -20,16 +20,7 @@ import java.io.File;
 // `新建手势库`的文件管理器
 
 public class NewLibrary extends NormalManager {
-    public Button yes;
-    public Button cancel;
     public EditText fileName;
-    public TextView curPath;
-
-    public String path;
-
-    int item_height = 130;
-    int type_padding = 20;
-    int name_padding = 40;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +28,8 @@ public class NewLibrary extends NormalManager {
         View view = inflater.inflate(R.layout.library_save, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
-        // 绑定按钮事件
-        initButton(view);
+        initPath(view);// 初始化路径
+        initButton(view);// 绑定按钮事件
 
         // 调用文件管理器
         Activity activity = getActivity();
@@ -50,7 +41,6 @@ public class NewLibrary extends NormalManager {
         yes = view.findViewById(R.id.yes_button);
         cancel = view.findViewById(R.id.cancel_button);
         fileName = view.findViewById(R.id.library_name);// 新手势库名称
-        curPath = view.findViewById(R.id.cur_path);// 路径框
 
         yes.setOnClickListener(new View.OnClickListener() {//
             @Override
