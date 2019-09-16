@@ -1,6 +1,7 @@
 package com.example.gesture;
 
 import android.app.Activity;
+import android.gesture.GestureLibraries;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -60,7 +61,8 @@ public class OpenLibrary extends NormalManager {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.testGesture.nameLibrary = itemPath + "/" + itemName;// TODO 手势库路径
+                    nameLibrary = itemPath + "/" + itemName;// TODO 手势库路径
+                    MainActivity.testGesture.gestureLibrary = GestureLibraries.fromFile(nameLibrary);// 打开手势库
                     dismiss();
                 }
             });

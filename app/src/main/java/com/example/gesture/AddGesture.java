@@ -64,6 +64,9 @@ public class AddGesture extends DialogFragment {
                 gesture = gestureOverlayView.getGesture();
                 if (gesture != null) {// TODO
                     saveDialog.show(fragmentManager, "add save");
+                } else {
+                    MainActivity.infoToast(getContext(), "please input gesture");
+                    return;
                 }
             }
         });

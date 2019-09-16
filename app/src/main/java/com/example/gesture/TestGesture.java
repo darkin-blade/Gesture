@@ -1,7 +1,9 @@
 package com.example.gesture;
 
 import android.gesture.Gesture;
+import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.widget.Button;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.ArrayList;
+
 public class TestGesture extends DialogFragment {
     public OpenLibrary openLibrary;// 打开手势库
 
@@ -23,19 +27,18 @@ public class TestGesture extends DialogFragment {
     public Button btnExit;// 返回到主页面
 
     public GestureOverlayView gestureOverlayView;
+    public GestureLibrary gestureLibrary;// 打开的手势库
     public Gesture gesture;
 
     static public View view;
     static public FragmentManager fragmentManager;
-
-    public String nameLibrary;// 手势库路径
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
 
         this.fragmentManager = fragmentManager;
-        nameLibrary = null;// 初始化路径
+        gestureLibrary = null;// 初始化
         openLibrary = new OpenLibrary();
     }
 
@@ -75,12 +78,17 @@ public class TestGesture extends DialogFragment {
         btnReco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (nameLibrary == null) {// 没有打开手势库
+                // 检查手势库
+                if (gestureLibrary == null) {
                     MainActivity.infoToast(getContext(), "you haven't open any library");
-                    return;
                 }
 
                 // 识别手势
+                gesture = gestureOverlayView.getGesture();
+                if (gesture == null) {// 没有输入手势
+                    MainActivity.infoToast(getContext(), "please input gesture");
+                    return;
+                }
             }
         });
 
