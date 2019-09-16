@@ -96,6 +96,7 @@ public class TestGesture extends DialogFragment {
                 }
 
                 ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
+                MainActivity.infoLog("size: " + predictions.size());
                 resultDialog = new ResultDialog();// 结果初始化
                 resultDialog.results = new ArrayList<String>();// 识别结果
                 for (Prediction prediction : predictions) {
