@@ -35,26 +35,9 @@
     </path>
 
     <path
-        android:pathData="M55,25 L65,25
-        95,95 83,95
-        73.5,72.8 46.5,72.8 51,62.3 69,62.3
-        60,41.3
-        37,95 25,95">
-        <aapt:attr name="android:fillColor">
-            <gradient
-                android:endX="0"
-                android:endY="120"
-                android:startX="100"
-                android:startY="20"
-                android:type="linear">
-                <item
-                    android:color="#ffffff"
-                    android:offset="0.0" />
-                <item
-                    android:color="#dddddd"
-                    android:offset="1.0" />
-            </gradient>
-        </aapt:attr>
+        android:pathData="M60,63 L90,63 90,84 C87,90 80,99 60,99 C58,99 27,100 27,60 C27,45 37,25 60,25 C70,25 85,30 90,40"
+        android:strokeWidth="10"
+        android:strokeColor="#ffffff">
     </path>
 
 </vector>
