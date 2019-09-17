@@ -140,7 +140,7 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout item = new LinearLayout(getContext());// TODO 参数
         item.setLayoutParams(itemParam);
         item.setBackgroundResource(R.color.grey);
-        item.setPadding(name_padding, 0, 0, 0);
+        item.setPadding(0, 0, 0, 0);
 
         LinearLayout type = new LinearLayout(getContext());// 图标的外圈
         type.setLayoutParams(typeParam);
