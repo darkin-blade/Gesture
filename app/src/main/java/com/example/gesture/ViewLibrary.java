@@ -51,7 +51,7 @@ public class ViewLibrary extends DialogFragment {
         MainActivity.window_num = MainActivity.VIEW_GESTURE;
 
         this.fragmentManager = fragmentManager;
-        listDelete = null;
+        listDelete = new ArrayList<String>();
         pathLibrary = null;
         gestureLibrary = null;
         openLibrary = new OpenLibrary();
