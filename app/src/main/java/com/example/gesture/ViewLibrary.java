@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -159,7 +160,7 @@ public class ViewLibrary extends DialogFragment {
         img.setImageBitmap(bitmap);
         img.setBackgroundResource(R.color.grey);// TODO
 
-        RelativeLayout detail = new RelativeLayout(getContext());
+        final RelativeLayout detail = new RelativeLayout(getContext());
         detailParam.setMargins(detail_margin, detail_margin, detail_margin, detail_margin);
         detail.setLayoutParams(detailParam);
 
@@ -188,7 +189,17 @@ public class ViewLibrary extends DialogFragment {
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         checkBox.setLayoutParams(params);
 
-        // 添加选中监听
+        // TODO 添加选中监听
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean ischecked) {
+                if (ischecked) {
+                    detail.setBackgroundResource(R.color.grey_light);
+                } else {
+                    detail.setBackgroundResource(R.color.transparent);
+                }
+            }
+        });
 
         gestureList.addView(item);// 添加至列表
 
