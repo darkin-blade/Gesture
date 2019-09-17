@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     static public String appPath;// app路径
     static public final int ADD_TO_LIBRARY = 1;
     static public final int CREATE_NEW_LIBRARY = 2;
+    static public final int VIEW_GESTURE = 3;// 浏览手势
 
     static public int window_num;// TODO 模式
 
@@ -96,10 +97,11 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         infoLog("window_num: " + window_num);
         switch (window_num) {
             case ADD_TO_LIBRARY:
-                ;// TODO 添加至已有的手势库
                 break;
             case CREATE_NEW_LIBRARY:
                 break;
+            case VIEW_GESTURE:
+                viewLibrary.loadLibrary();// TODO
         }
     }
 }

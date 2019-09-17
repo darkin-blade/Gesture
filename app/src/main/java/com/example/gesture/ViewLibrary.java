@@ -1,28 +1,39 @@
 package com.example.gesture;
 
+import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 public class ViewLibrary extends DialogFragment {
+    public OpenLibrary openLibrary;
+
     public Button btnOpen,
             btnDelete,// 删除选中项
             btnBack;
+    public TextView pathLibrary;// 打开的手势库路径
 
     static public View view;
     static public FragmentManager fragmentManager;
 
+    public GestureLibrary gestureLibrary;// 打开的手势库
+
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
+        MainActivity.window_num = MainActivity.VIEW_GESTURE;// TODO
 
         this.fragmentManager = fragmentManager;
+        pathLibrary = null;
+        gestureLibrary = null;
+        openLibrary = new OpenLibrary();
     }
 
     @Override
@@ -49,6 +60,7 @@ public class ViewLibrary extends DialogFragment {
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                openLibrary.show(fragmentManager, "open");
             }
         });
 
@@ -64,5 +76,9 @@ public class ViewLibrary extends DialogFragment {
                 dismiss();
             }
         });
+    }
+
+    public void loadLibrary() {// TODO 加载手势库
+        MainActivity.infoLog("loadLibrary");
     }
 }
