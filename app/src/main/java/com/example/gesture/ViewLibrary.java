@@ -89,6 +89,18 @@ public class ViewLibrary extends DialogFragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (listDelete.size() == 0) {
+                    MainActivity.infoToast(getContext(), "you haven't selected any gestures");
+                    return;
+                }
+
+                MainActivity.infoToast(getContext(), "you have deleted " + listDelete.size() + " gestures");
+                for (String name : listDelete) {
+                    gestureLibrary.removeEntry(name);
+                    listDelete.remove(name);
+                }
+                gestureLibrary.save();
+                loadLibrary();// TODO 刷新
             }
         });
 
@@ -204,7 +216,7 @@ public class ViewLibrary extends DialogFragment {
                     listDelete.remove(name.getText().toString());
                     detail.setBackgroundResource(R.color.transparent);
                 }
-                MainActivity.infoLog("size: " + listDelete.size());
+                MainActivity.infoLog(name.getText().toString() + ": " + listDelete.size());
             }
         });
 
