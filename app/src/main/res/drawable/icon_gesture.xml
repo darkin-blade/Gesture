@@ -35,7 +35,7 @@
     </path>
 
     <path
-        android:pathData="M60,63 L90,63 90,84 C87,90 80,99 60,99 C58,99 27,100 27,60 C27,45 37,25 60,25 C70,25 85,30 90,40"
+        android:pathData="M60,63 L87,63 87,84 C87,85 80,96 60,96 C58,96 30,96 30,60 C30,50 37,29 60,29 Q80,30 90,44"
         android:strokeWidth="10"
         android:strokeColor="#ffffff">
     </path>
