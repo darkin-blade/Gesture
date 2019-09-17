@@ -28,50 +28,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:background="@color/grey">
-                    <LinearLayout
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:padding="10dp"
-                        android:background="@drawable/item_gesture">
-                        <ImageView
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:background="@color/black">
-                        </ImageView>
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/transparent"
-                            android:text="storage/"
-                            android:padding="15dp"
-                            android:layout_alignParentLeft="true">
-                        </TextView>
-
-                        <CheckBox
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:button="@drawable/checkbox_gesture"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-
             </LinearLayout>
         </ScrollView>
-
 
         <LinearLayout
             android:layout_width="match_parent"

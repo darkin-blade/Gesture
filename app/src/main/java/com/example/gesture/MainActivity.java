@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     static public final int TEST_GESTURE = 4;// 测试
 
     static public int window_num;// TODO 模式
+    public int isExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     }
 
     public void initData() {
+        // 初始化数值
+        window_num = MAIN;
+        isExit = 0;
+
         // 初始化路径
         appPath = getExternalFilesDir("").toString();
 
@@ -80,6 +85,22 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
                 viewLibrary.show(getSupportFragmentManager(), "myView");
             }
         });
+
+        Button btnExit = findViewById(R.id.exit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isExit = 1;
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isExit == 1) {
+            super.onBackPressed();
+        }
     }
 
     static public void infoLog(String log) {

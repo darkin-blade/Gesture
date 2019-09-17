@@ -37,6 +37,7 @@
             android:text="TODO">
         </Button>
         <Button
+            android:id="@+id/exit"
             style="@style/item_exit"
             android:text="Exit">
         </Button>
