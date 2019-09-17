@@ -61,7 +61,6 @@ public class TestGesture extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.test_gesture, container);
-        MainActivity.infoLog(view.toString() + " start");
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initGesture();// 初始化手势
@@ -167,7 +166,6 @@ public class TestGesture extends DialogFragment {
     }
 
     public void loadName() {
-        MainActivity.infoLog(view.toString() + " end");
         pathLibrary = view.findViewById(R.id.library_name);
         File tempLibrary = new File(openLibrary.nameLibrary);
         pathLibrary.setText("current library: " + tempLibrary.getName());

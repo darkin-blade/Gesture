@@ -104,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
                 break;
             case VIEW_GESTURE:
                 viewLibrary.loadLibrary();
+                break;
             case TEST_GESTURE:
                 testGesture.loadName();
+                break;
         }
     }
 }
