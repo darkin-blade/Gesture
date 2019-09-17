@@ -15,10 +15,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.io.File;
 import java.util.ArrayList;
 
 // 打开手势库,并识别输入的手势
@@ -31,6 +33,7 @@ public class TestGesture extends DialogFragment {
     public Button btnReco;// 识别手势
     public Button btnCancel;// 删除当前
     public Button btnExit;// 返回到主页面
+    public TextView pathLibrary;// 打开的手势库名称
 
     public GestureOverlayView gestureOverlayView;
     public GestureLibrary gestureLibrary;// 打开的手势库
@@ -42,6 +45,7 @@ public class TestGesture extends DialogFragment {
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
+        MainActivity.window_num = MainActivity.TEST_GESTURE;
 
         this.fragmentManager = fragmentManager;
         gestureLibrary = null;// 初始化
@@ -159,5 +163,11 @@ public class TestGesture extends DialogFragment {
             public void onGestureCancelled(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
             }
         });
+    }
+
+    public void loadName() {
+        pathLibrary = view.findViewById(R.id.library_name);
+        File tempLibrary = new File(openLibrary.nameLibrary);
+        pathLibrary.setText("current library: " + tempLibrary.getName());
     }
 }

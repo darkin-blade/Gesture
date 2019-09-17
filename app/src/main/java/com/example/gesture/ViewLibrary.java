@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
@@ -22,6 +23,7 @@ public class ViewLibrary extends DialogFragment {
             btnDelete,// 删除选中项
             btnBack;
     public TextView pathLibrary;// 打开的手势库路径
+    public LinearLayout gestureList;// 手势库列表
 
     static public View view;
     static public FragmentManager fragmentManager;
@@ -84,6 +86,7 @@ public class ViewLibrary extends DialogFragment {
 
     public void initPath() {
         pathLibrary = view.findViewById(R.id.library_name);// 手势库路径
+        gestureList = view.findViewById(R.id.gesture_list);// 手势库列表
     }
 
     public void loadLibrary() {// TODO 加载手势库
