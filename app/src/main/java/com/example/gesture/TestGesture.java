@@ -7,14 +7,11 @@ import android.gesture.GestureOverlayView;
 import android.gesture.Prediction;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
@@ -39,7 +36,7 @@ public class TestGesture extends DialogFragment {
     public GestureLibrary gestureLibrary;// 打开的手势库
     public Gesture gesture;
 
-    static public View view;
+    static public View myView;
     static public FragmentManager fragmentManager;
 
     @Override
@@ -60,20 +57,20 @@ public class TestGesture extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.test_gesture, container);
+        myView = inflater.inflate(R.layout.test_gesture, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initGesture();// 初始化手势
         initButton();// 绑定按钮事件
 
-        return view;
+        return myView;
     }
 
     public void initButton() {
-        btnOpen = view.findViewById(R.id.button_4);
-        btnReco = view.findViewById(R.id.button_3);
-        btnCancel = view.findViewById(R.id.button_2);
-        btnExit = view.findViewById(R.id.button_1);
+        btnOpen = myView.findViewById(R.id.button_4);
+        btnReco = myView.findViewById(R.id.button_3);
+        btnCancel = myView.findViewById(R.id.button_2);
+        btnExit = myView.findViewById(R.id.button_1);
 
         // 打开手势库
         btnOpen.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +139,7 @@ public class TestGesture extends DialogFragment {
 
     public void initGesture() {
         // 设置颜色
-        gestureOverlayView = view.findViewById(R.id.gesture_input);
+        gestureOverlayView = myView.findViewById(R.id.gesture_input);
         gestureOverlayView.setGestureStrokeWidth(5);
 
         gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
@@ -166,7 +163,7 @@ public class TestGesture extends DialogFragment {
     }
 
     public void loadName() {
-        pathLibrary = view.findViewById(R.id.library_name);
+        pathLibrary = myView.findViewById(R.id.library_name);
         File tempLibrary = new File(openLibrary.nameLibrary);
         pathLibrary.setText("current library: " + tempLibrary.getName());
     }

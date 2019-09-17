@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewLibrary.show(getSupportFragmentManager(), "view");
+                viewLibrary.show(getSupportFragmentManager(), "myView");
             }
         });
     }

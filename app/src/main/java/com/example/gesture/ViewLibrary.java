@@ -1,6 +1,5 @@
 package com.example.gesture;
 
-import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
@@ -16,7 +15,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class ViewLibrary extends DialogFragment {
     public OpenLibrary openLibrary;
@@ -27,10 +25,14 @@ public class ViewLibrary extends DialogFragment {
     public TextView pathLibrary;// 打开的手势库路径
     public LinearLayout gestureList;// 手势库列表
 
-    static public View view;
+    static public View myView;
     static public FragmentManager fragmentManager;
 
     public GestureLibrary gestureLibrary;// 打开的手势库
+
+    public int img_width = 130;
+    public int name_padding = 40;
+    public int img_padding = 20;
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -51,19 +53,19 @@ public class ViewLibrary extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.library_view, container);
+        myView = inflater.inflate(R.layout.library_view, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initButton();// 绑定按钮事件
         initPath();
 
-        return view;
+        return myView;
     }
 
     public void initButton() {
-        btnOpen = view.findViewById(R.id.button_3);
-        btnDelete = view.findViewById(R.id.button_2);
-        btnBack = view.findViewById(R.id.button_1);
+        btnOpen = myView.findViewById(R.id.button_3);
+        btnDelete = myView.findViewById(R.id.button_2);
+        btnBack = myView.findViewById(R.id.button_1);
 
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +89,8 @@ public class ViewLibrary extends DialogFragment {
     }
 
     public void initPath() {
-        pathLibrary = view.findViewById(R.id.library_name);// 手势库路径
-        gestureList = view.findViewById(R.id.gesture_list);// 手势库列表
+        pathLibrary = myView.findViewById(R.id.library_name);// 手势库路径
+        gestureList = myView.findViewById(R.id.gesture_list);// 手势库列表
     }
 
     public void loadLibrary() {// TODO 加载手势库
@@ -110,12 +112,13 @@ public class ViewLibrary extends DialogFragment {
         pathLibrary.setText("current library: " + tempLibrary.getName());
 
         // 显示手势
-        gestureList.removeAllViews();// 清空
         Object[] names = gestureLibrary.getGestureEntries().toArray();// 获取手势名列表
         if (names == null || names.length < 1) {
             MainActivity.infoToast(getContext(), "load library failed");
             return;
         }
+
+        gestureList.removeAllViews();// 清空
 
         for (Object obj : names) {
             String name = obj.toString();
@@ -123,7 +126,39 @@ public class ViewLibrary extends DialogFragment {
         }
     }
 
-    public LinearLayout createItem(LinearLayout item, String itemName) {
+    public LinearLayout createItem(String itemName) {
+        LinearLayout layout = myView.findViewById(R.id.item_list);
+        LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, img_width);
+        LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(img_width, img_width);
+        LinearLayout.LayoutParams iconParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        LinearLayout item = new LinearLayout(getContext());// TODO 参数
+        item.setLayoutParams(itemParam);
+        item.setBackgroundResource(R.color.grey);
+        item.setPadding(name_padding, 0, 0, 0);
+
+        LinearLayout type = new LinearLayout(getContext());// 图标的外圈
+        type.setLayoutParams(typeParam);
+        type.setPadding(img_padding, img_padding, img_padding, img_padding);
+
+        View icon = new View(getContext());// 图标
+        icon.setLayoutParams(iconParam);
+
+        TextView name = new TextView(getContext());// 文件名
+        name.setLayoutParams(nameParam);
+        name.setBackgroundResource(R.color.grey);
+        name.setText(itemName);
+        name.setPadding(name_padding, name_padding, name_padding, name_padding);
+        name.setSingleLine();
+
+        type.addView(icon);
+        item.addView(type);
+        item.addView(name);
+
+
+        layout.addView(item);
+
         return item;
     }
 }

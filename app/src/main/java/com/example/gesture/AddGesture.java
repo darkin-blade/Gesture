@@ -4,7 +4,6 @@ import android.gesture.Gesture;
 import android.gesture.GestureOverlayView;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +23,7 @@ public class AddGesture extends DialogFragment {
     static public GestureOverlayView gestureOverlayView;
     static public Gesture gesture;
 
-    static public View view;
+    static public View myView;
     static public FragmentManager fragmentManager;
 
     @Override
@@ -43,19 +42,19 @@ public class AddGesture extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.add_gesture, container);
+        myView = inflater.inflate(R.layout.add_gesture, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initGesture();// 初始化手势
         initButton();// 绑定按钮事件
 
-        return view;
+        return myView;
     }
 
     public void initButton() {
-        btnSave = view.findViewById(R.id.button_3);
-        btnCancel = view.findViewById(R.id.button_2);
-        btnExit = view.findViewById(R.id.button_1);
+        btnSave = myView.findViewById(R.id.button_3);
+        btnCancel = myView.findViewById(R.id.button_2);
+        btnExit = myView.findViewById(R.id.button_1);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +87,7 @@ public class AddGesture extends DialogFragment {
 
     public void initGesture() {
         // 设置颜色
-        gestureOverlayView = view.findViewById(R.id.gesture_input);
+        gestureOverlayView = myView.findViewById(R.id.gesture_input);
         gestureOverlayView.setGestureStrokeWidth(5);
 
         gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
