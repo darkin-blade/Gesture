@@ -42,15 +42,10 @@
                 style="@style/line">
             </View>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:scrollbars="none">
-                <TextView
-                    android:id="@+id/library_name"
-                    style="@style/tab_white">
-                </TextView>
-            </HorizontalScrollView>
+            <TextView
+                android:id="@+id/library_name"
+                style="@style/tab_white">
+            </TextView>
 
             <View
                 style="@style/line">

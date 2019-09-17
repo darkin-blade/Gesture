@@ -1,5 +1,6 @@
 package com.example.gesture;
 
+import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import java.io.File;
 
 public class ViewLibrary extends DialogFragment {
     public OpenLibrary openLibrary;
@@ -48,6 +51,7 @@ public class ViewLibrary extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));// 背景透明
 
         initButton();// 绑定按钮事件
+        initPath();
 
         return view;
     }
@@ -78,7 +82,26 @@ public class ViewLibrary extends DialogFragment {
         });
     }
 
+    public void initPath() {
+        pathLibrary = view.findViewById(R.id.library_name);// 手势库路径
+    }
+
     public void loadLibrary() {// TODO 加载手势库
-        MainActivity.infoLog("loadLibrary");
+        gestureLibrary = GestureLibraries.fromFile(openLibrary.nameLibrary);// 打开手势库
+
+        // 检查手势库
+        if (gestureLibrary == null) {
+            MainActivity.infoToast(getContext(), "you haven't open any library");
+            return;
+        }
+
+        // 加载手势库
+        if (gestureLibrary.load() == false) {
+            MainActivity.infoToast(getContext(), "can't load this library");
+            return;
+        }
+
+        File tempLibrary = new File(openLibrary.nameLibrary);
+        pathLibrary.setText("current library: " + tempLibrary.getName());
     }
 }

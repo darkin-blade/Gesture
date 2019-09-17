@@ -63,7 +63,6 @@ public class NormalManager extends DialogFragment {
 
     public void initPath(View view) {
         curPath = view.findViewById(R.id.cur_path);// 路径框
-        MainActivity.infoLog("curpath: " + (curPath == null));
     }
 
     public void initButton(View view) {
