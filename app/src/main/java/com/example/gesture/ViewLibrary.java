@@ -1,5 +1,6 @@
 package com.example.gesture;
 
+import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class ViewLibrary extends DialogFragment {
     public OpenLibrary openLibrary;
@@ -106,5 +108,22 @@ public class ViewLibrary extends DialogFragment {
 
         File tempLibrary = new File(openLibrary.nameLibrary);
         pathLibrary.setText("current library: " + tempLibrary.getName());
+
+        // 显示手势
+        gestureList.removeAllViews();// 清空
+        Object[] names = gestureLibrary.getGestureEntries().toArray();// 获取手势名列表
+        if (names == null || names.length < 1) {
+            MainActivity.infoToast(getContext(), "load library failed");
+            return;
+        }
+
+        for (Object obj : names) {
+            String name = obj.toString();
+            MainActivity.infoLog(name);
+        }
+    }
+
+    public LinearLayout createItem(LinearLayout item, String itemName) {
+        return item;
     }
 }
