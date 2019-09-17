@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     static ViewLibrary viewLibrary;// 浏览手势库内容
 
     static public String appPath;// app路径
+    static public final int MAIN = 0;
     static public final int ADD_TO_LIBRARY = 1;
     static public final int CREATE_NEW_LIBRARY = 2;
     static public final int VIEW_GESTURE = 3;// 浏览手势
