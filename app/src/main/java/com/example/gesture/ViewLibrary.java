@@ -40,7 +40,7 @@ public class ViewLibrary extends DialogFragment {
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
-        MainActivity.window_num = MainActivity.VIEW_GESTURE;// TODO
+        MainActivity.window_num = MainActivity.VIEW_GESTURE;
 
         this.fragmentManager = fragmentManager;
         pathLibrary = null;
@@ -125,7 +125,7 @@ public class ViewLibrary extends DialogFragment {
 
         for (Object obj : names) {
             String name = obj.toString();
-            Gesture gesture = gestureLibrary.getGestures(name).get(0);
+            Gesture gesture = gestureLibrary.getGestures(name).get(0);// TODO 默认不重名
             MainActivity.infoLog(name);
             createItem(name, gesture);
         }
@@ -137,7 +137,7 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout.LayoutParams imgParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-        LinearLayout item = new LinearLayout(getContext());// TODO 参数
+        LinearLayout item = new LinearLayout(getContext());// 整个手势
         item.setLayoutParams(itemParam);
         item.setBackgroundResource(R.color.grey);
         item.setPadding(0, 0, 0, 0);

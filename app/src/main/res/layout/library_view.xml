@@ -43,25 +43,26 @@
                         </ImageView>
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/transparent"
                             android:text="storage/"
-                            android:padding="20dp">
+                            android:padding="20dp"
+                            android:layout_alignParentLeft="true">
                         </TextView>
 
                         <CheckBox
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
-                            android:checked="true"
                             android:button="@drawable/checkbox_gesture"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
