@@ -142,8 +142,6 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout.LayoutParams boxParam = new LinearLayout.LayoutParams(box_width, LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-        RelativeLayout.LayoutParams params = null;// 设置靠父元素左/右
-
         LinearLayout item = new LinearLayout(getContext());// 整个手势
         item.setLayoutParams(itemParam);
         item.setBackgroundResource(R.color.grey);
@@ -161,29 +159,30 @@ public class ViewLibrary extends DialogFragment {
         RelativeLayout detail = new RelativeLayout(getContext());
         detail.setLayoutParams(detailParam);
 
-        // 设置靠父元素左/右
         TextView name = new TextView(getContext());// 文件名
         name.setLayoutParams(nameParam);
         name.setBackgroundResource(R.color.grey);
         name.setText(itemName);
         name.setPadding(name_padding, name_padding, name_padding, name_padding);
         name.setSingleLine();
-        params = (RelativeLayout.LayoutParams) name.getLayoutParams();
-        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        name.setLayoutParams(params);
 
         CheckBox checkBox = new CheckBox(getContext());
         checkBox.setLayoutParams(boxParam);
         checkBox.setButtonDrawable(R.drawable.checkbox_gesture);
-        params = (RelativeLayout.LayoutParams) checkBox.getLayoutParams();
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        checkBox.setLayoutParams(params);
 
         type.addView(img);
         item.addView(type);
         detail.addView(name);
         detail.addView(checkBox);
         item.addView(detail);
+
+        // 设置靠父元素左/右
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) name.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        name.setLayoutParams(params);
+        params = (RelativeLayout.LayoutParams) checkBox.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        checkBox.setLayoutParams(params);
 
         gestureList.addView(item);// 添加至列表
 
