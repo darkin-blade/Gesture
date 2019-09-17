@@ -55,8 +55,10 @@
                         </TextView>
 
                         <CheckBox
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:checked="true"
+                            android:button="@drawable/checkbox_gesture"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
