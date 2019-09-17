@@ -13,7 +13,7 @@
     </path>
 
     <path
-        android:fillColor="#eeeeee"
+        android:fillColor="#ffffff"
         android:pathData="M3,3 L3,27 27,27 27,3">
     </path>
 

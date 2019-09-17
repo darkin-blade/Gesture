@@ -105,14 +105,17 @@ public class TestGesture extends DialogFragment {
                     return;
                 }
 
+                // TODO 获取识别结果
                 ArrayList<Prediction> predictions = gestureLibrary.recognize(gesture);
-                MainActivity.infoLog("size: " + predictions.size());
                 resultDialog = new ResultDialog();// 结果初始化
                 resultDialog.results = new ArrayList<String>();// 识别结果
+                int total = 0;
                 for (Prediction prediction : predictions) {
                     MainActivity.infoLog(prediction.name + ":" + prediction.score);
-                    if (prediction.score > 10.0) {
-                        resultDialog.results.add(prediction.name + ": " + prediction.score);// 匹配相似度
+                    resultDialog.results.add(prediction.name + ": " + prediction.score);// 匹配相似度
+                    total ++;
+                    if (total >= 5) {// TODO 只加载5个
+                        break;
                     }
                 }
 
