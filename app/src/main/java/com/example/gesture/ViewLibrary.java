@@ -37,8 +37,9 @@ public class ViewLibrary extends DialogFragment {
 
     public int img_width = 130;
     public int box_width = 80;
-    public int name_padding = 40;
+    public int name_padding = 30;
     public int img_padding = 20;
+    public int detail_margin = 10;
 
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
@@ -150,6 +151,7 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout type = new LinearLayout(getContext());// 图标的外圈
         type.setLayoutParams(typeParam);
         type.setPadding(img_padding, img_padding, img_padding, img_padding);
+        type.setBackgroundResource(R.drawable.item_gesture);// TODO
 
         ImageView img = new ImageView(getContext());// 手势预览
         Bitmap bitmap = gesture.toBitmap(128, 128, 10, 0xff30f030);
@@ -158,6 +160,7 @@ public class ViewLibrary extends DialogFragment {
         img.setBackgroundResource(R.color.grey);// TODO
 
         RelativeLayout detail = new RelativeLayout(getContext());
+        detailParam.setMargins(detail_margin, detail_margin, detail_margin, detail_margin);
         detail.setLayoutParams(detailParam);
 
         TextView name = new TextView(getContext());// 文件名
@@ -184,6 +187,8 @@ public class ViewLibrary extends DialogFragment {
         params = (RelativeLayout.LayoutParams) checkBox.getLayoutParams();
         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         checkBox.setLayoutParams(params);
+
+        // 添加选中监听
 
         gestureList.addView(item);// 添加至列表
 
