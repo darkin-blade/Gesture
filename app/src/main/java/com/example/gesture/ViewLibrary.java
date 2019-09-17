@@ -155,13 +155,14 @@ public class ViewLibrary extends DialogFragment {
         Bitmap bitmap = gesture.toBitmap(128, 128, 10, 0xff30f030);
         img.setLayoutParams(imgParam);
         img.setImageBitmap(bitmap);
+        img.setBackgroundResource(R.color.grey);// TODO
 
         RelativeLayout detail = new RelativeLayout(getContext());
         detail.setLayoutParams(detailParam);
 
         TextView name = new TextView(getContext());// 文件名
         name.setLayoutParams(nameParam);
-        name.setBackgroundResource(R.color.grey);
+        name.setBackgroundResource(R.color.transparent);
         name.setText(itemName);
         name.setPadding(name_padding, name_padding, name_padding, name_padding);
         name.setSingleLine();
