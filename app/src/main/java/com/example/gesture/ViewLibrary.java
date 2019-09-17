@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
@@ -34,6 +36,7 @@ public class ViewLibrary extends DialogFragment {
     public GestureLibrary gestureLibrary;// 打开的手势库
 
     public int img_width = 130;
+    public int box_width = 80;
     public int name_padding = 40;
     public int img_padding = 20;
 
@@ -135,7 +138,11 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, img_width);
         LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(img_width, img_width);
         LinearLayout.LayoutParams imgParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams detailParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams boxParam = new LinearLayout.LayoutParams(box_width, LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        RelativeLayout.LayoutParams params = null;// 设置靠父元素左/右
 
         LinearLayout item = new LinearLayout(getContext());// 整个手势
         item.setLayoutParams(itemParam);
@@ -151,16 +158,32 @@ public class ViewLibrary extends DialogFragment {
         img.setLayoutParams(imgParam);
         img.setImageBitmap(bitmap);
 
+        RelativeLayout detail = new RelativeLayout(getContext());
+        detail.setLayoutParams(detailParam);
+
+        // 设置靠父元素左/右
         TextView name = new TextView(getContext());// 文件名
         name.setLayoutParams(nameParam);
         name.setBackgroundResource(R.color.grey);
         name.setText(itemName);
         name.setPadding(name_padding, name_padding, name_padding, name_padding);
         name.setSingleLine();
+        params = (RelativeLayout.LayoutParams) name.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        name.setLayoutParams(params);
+
+        CheckBox checkBox = new CheckBox(getContext());
+        checkBox.setLayoutParams(boxParam);
+        checkBox.setButtonDrawable(R.drawable.checkbox_gesture);
+        params = (RelativeLayout.LayoutParams) checkBox.getLayoutParams();
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        checkBox.setLayoutParams(params);
 
         type.addView(img);
         item.addView(type);
-        item.addView(name);
+        detail.addView(name);
+        detail.addView(checkBox);
+        item.addView(detail);
 
         gestureList.addView(item);// 添加至列表
 
