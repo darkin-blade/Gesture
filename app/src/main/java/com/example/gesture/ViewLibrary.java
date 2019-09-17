@@ -21,6 +21,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class ViewLibrary extends DialogFragment {
     public OpenLibrary openLibrary;
@@ -42,12 +43,15 @@ public class ViewLibrary extends DialogFragment {
     public int img_padding = 20;
     public int detail_margin = 10;
 
+    public ArrayList<String> listDelete;// 要删除的手势列表
+
     @Override
     public void show(FragmentManager fragmentManager, String tag) {
         super.show(fragmentManager, tag);
         MainActivity.window_num = MainActivity.VIEW_GESTURE;
 
         this.fragmentManager = fragmentManager;
+        listDelete = null;
         pathLibrary = null;
         gestureLibrary = null;
         openLibrary = new OpenLibrary();
@@ -152,19 +156,19 @@ public class ViewLibrary extends DialogFragment {
         LinearLayout type = new LinearLayout(getContext());// 图标的外圈
         type.setLayoutParams(typeParam);
         type.setPadding(img_padding, img_padding, img_padding, img_padding);
-        type.setBackgroundResource(R.drawable.item_gesture);// TODO
+        type.setBackgroundResource(R.drawable.item_gesture);
 
         ImageView img = new ImageView(getContext());// 手势预览
         Bitmap bitmap = gesture.toBitmap(128, 128, 10, 0xff30f030);
         img.setLayoutParams(imgParam);
         img.setImageBitmap(bitmap);
-        img.setBackgroundResource(R.color.grey);// TODO
+        img.setBackgroundResource(R.color.grey);
 
-        final RelativeLayout detail = new RelativeLayout(getContext());
+        final RelativeLayout detail = new RelativeLayout(getContext());// TODO
         detailParam.setMargins(detail_margin, detail_margin, detail_margin, detail_margin);
         detail.setLayoutParams(detailParam);
 
-        TextView name = new TextView(getContext());// 文件名
+        final TextView name = new TextView(getContext());// TODO 文件名
         name.setLayoutParams(nameParam);
         name.setBackgroundResource(R.color.transparent);
         name.setText(itemName);
@@ -192,12 +196,15 @@ public class ViewLibrary extends DialogFragment {
         // TODO 添加选中监听
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean ischecked) {
-                if (ischecked) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (checked) {
+                    listDelete.add(name.getText().toString());
                     detail.setBackgroundResource(R.color.grey_light);
                 } else {
+                    listDelete.remove(name.getText().toString());
                     detail.setBackgroundResource(R.color.transparent);
                 }
+                MainActivity.infoLog("size: " + listDelete.size());
             }
         });
 
