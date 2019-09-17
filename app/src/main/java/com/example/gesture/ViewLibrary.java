@@ -1,13 +1,16 @@
 package com.example.gesture;
 
+import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -112,25 +115,26 @@ public class ViewLibrary extends DialogFragment {
         pathLibrary.setText("current library: " + tempLibrary.getName());
 
         // 显示手势
+        gestureList.removeAllViews();// 清空列表
+
         Object[] names = gestureLibrary.getGestureEntries().toArray();// 获取手势名列表
         if (names == null || names.length < 1) {
             MainActivity.infoToast(getContext(), "load library failed");
             return;
         }
 
-        gestureList.removeAllViews();// 清空
-
         for (Object obj : names) {
             String name = obj.toString();
+            Gesture gesture = gestureLibrary.getGestures(name).get(0);
             MainActivity.infoLog(name);
+            createItem(name, gesture);
         }
     }
 
-    public LinearLayout createItem(String itemName) {
-        LinearLayout layout = myView.findViewById(R.id.item_list);
+    public LinearLayout createItem(String itemName, Gesture gesture) {
         LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, img_width);
         LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(img_width, img_width);
-        LinearLayout.LayoutParams iconParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams imgParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams nameParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
         LinearLayout item = new LinearLayout(getContext());// TODO 参数
@@ -142,8 +146,10 @@ public class ViewLibrary extends DialogFragment {
         type.setLayoutParams(typeParam);
         type.setPadding(img_padding, img_padding, img_padding, img_padding);
 
-        View icon = new View(getContext());// 图标
-        icon.setLayoutParams(iconParam);
+        ImageView img = new ImageView(getContext());// 手势预览
+        Bitmap bitmap = gesture.toBitmap(128, 128, 10, 0xff30f030);
+        img.setLayoutParams(imgParam);
+        img.setImageBitmap(bitmap);
 
         TextView name = new TextView(getContext());// 文件名
         name.setLayoutParams(nameParam);
@@ -152,12 +158,11 @@ public class ViewLibrary extends DialogFragment {
         name.setPadding(name_padding, name_padding, name_padding, name_padding);
         name.setSingleLine();
 
-        type.addView(icon);
+        type.addView(img);
         item.addView(type);
         item.addView(name);
 
-
-        layout.addView(item);
+        gestureList.addView(item);// 添加至列表
 
         return item;
     }
