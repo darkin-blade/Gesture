@@ -84,13 +84,13 @@ public class TestGesture extends DialogFragment {
         btnReco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gestureLibrary = GestureLibraries.fromFile(openLibrary.nameLibrary);// 打开手势库
-
                 // 检查手势库
-                if (gestureLibrary == null) {
+                if (openLibrary.nameLibrary == null || openLibrary.nameLibrary.length() < 1) {
                     MainActivity.infoToast(getContext(), "you haven't open any library");
                     return;
                 }
+
+                gestureLibrary = GestureLibraries.fromFile(openLibrary.nameLibrary);// 打开手势库
 
                 // 识别手势
                 gesture = gestureOverlayView.getGesture();

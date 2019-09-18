@@ -117,7 +117,7 @@ public class ViewLibrary extends DialogFragment {
         gestureList = myView.findViewById(R.id.gesture_list);// 手势库列表
     }
 
-    public void loadLibrary() {// TODO 加载手势库
+    public void loadLibrary() {// TODO openLibrary.nameLibrary 为空
         gestureLibrary = GestureLibraries.fromFile(openLibrary.nameLibrary);// 打开手势库
 
         // 检查手势库
