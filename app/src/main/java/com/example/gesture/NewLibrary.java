@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.gesture.fragments.NormalManager;
 
 import java.io.File;
@@ -18,6 +20,12 @@ import java.io.File;
 // `新建手势库`的文件管理器
 
 public class NewLibrary extends NormalManager {
+    @Override
+    public void show(FragmentManager fragmentManager, String tag) {
+        super.show(fragmentManager, tag);
+        MainActivity.window_num = MainActivity.NEW_LIBRARY;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.library_save, container);

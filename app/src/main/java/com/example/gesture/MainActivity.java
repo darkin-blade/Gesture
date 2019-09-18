@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     static public final int CREATE_NEW_LIBRARY = 2;
     static public final int VIEW_GESTURE = 3;// 浏览手势
     static public final int TEST_GESTURE = 4;// 测试
+    static public final int NEW_LIBRARY = 5;// 新建手势库
 
     static public int window_num;// TODO 模式
     public int isExit;
