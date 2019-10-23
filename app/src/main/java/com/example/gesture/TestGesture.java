@@ -128,6 +128,7 @@ public class TestGesture extends DialogFragment {
             @Override
             public void onClick(View view) {
                 gestureOverlayView.clear(true);// 清空
+                gesture = null;
             }
         });
 
@@ -135,6 +136,7 @@ public class TestGesture extends DialogFragment {
             @Override
             public void onClick(View view) {
                 gestureOverlayView.clear(true);// 清空
+                gesture = null;
                 dismiss();
             }
         });
@@ -145,24 +147,30 @@ public class TestGesture extends DialogFragment {
         gestureOverlayView = myView.findViewById(R.id.gesture_input);
         gestureOverlayView.setGestureStrokeWidth(5);
 
-        gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
-            @Override
-            public void onGestureStarted(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
-                gesture = null;
-            }
+            gestureOverlayView.addOnGestureListener(new GestureOverlayView.OnGestureListener() {
+                @Override
+                public void onGestureStarted(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+    //                MainActivity.infoLog(gestureOverlayView.getGesture().toString());
+    //                if (gesture != null && gestureOverlayView.getGesture() == null) {// TODO 使手势不自动清除
+    //                    gestureOverlayView.setGesture(gesture);
+                        MainActivity.infoLog("started");
+    //                }
+                }
 
-            @Override
-            public void onGesture(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
-            }
+                @Override
+                public void onGesture(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                }
 
-            @Override
-            public void onGestureEnded(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
-            }
+                @Override
+                public void onGestureEnded(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                    gesture = gestureOverlayView.getGesture();
+                }
 
-            @Override
-            public void onGestureCancelled(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
-            }
-        });
+                @Override
+                public void onGestureCancelled(GestureOverlayView gestureOverlayView, MotionEvent motionEvent) {
+                    MainActivity.infoLog("canceled");
+                }
+            });
     }
 
     public void loadName() {
