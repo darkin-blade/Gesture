@@ -153,6 +153,7 @@ public class ViewLibrary extends DialogFragment {
     }
 
     public LinearLayout createItem(String itemName, Gesture gesture) {
+        // TODO 先宽后高
         LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, img_width);
         LinearLayout.LayoutParams typeParam = new LinearLayout.LayoutParams(img_width, img_width);
         LinearLayout.LayoutParams imgParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
